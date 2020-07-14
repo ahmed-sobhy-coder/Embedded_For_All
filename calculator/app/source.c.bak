@@ -1,6 +1,67 @@
 #include "app.h"
 #include "servo.h"
 uint32_t sysclock;
+/*
+   lcd string rotation function 
+*/
+
+void LCD_StrRot(int8_t*str)
+{
+	uint8_t lstChrIndx= strLen(str)-1;
+	uint8_t strLength = strLen(str);
+	uint8_t nodots =16;
+	uint8_t count=0,temp;
+	uint8_t count3=0;
+	uint8_t lstChrDot= nodots-strLength;
+	uint8_t count2=0;
+	int8_t flag=0;
+	while(str[count]!='\0')
+	{
+	   LCD_SendChr(str[count++]);
+		 msDelay(1);
+	}
+  for(count=0;count<16;count++)
+  {
+		if(count==lstChrDot+1){
+		LCD_SendCmd((0x80 | (0x67-(count-1))) );//0x80 it is a command to set ddram address,
+										 //row is the address of the second location in the row
+		usDelay(37);//command execution time 
+		LCD_SendChr(str[lstChrIndx-count2++]);
+			LCD_ShiftDisplay(1);
+					 msDelay(500);	
+		
+		}
+		else if(count>lstChrDot)
+    {
+	  LCD_SendCmd((0x80 | (0x67-2)) );//0x80 it is a command to set ddram address,
+										 //row is the address of the second location in the row
+		usDelay(37);//command execution time 
+		LCD_SendChr(str[lstChrIndx-count2++]);
+					//	LCD_ShiftDisplay(1);
+					 msDelay(500000);	
+		}
+		else{
+	   LCD_ShiftDisplay(1);
+		 msDelay(500);	
+		}
+	}
+}
+/*             lstnde    loop
+   ahmed            4      0
+    ahmed           5      1
+     ahmed          6      2
+      ahmed         7      3 
+       ahmed        8      4 
+        ahmed       9      5
+         ahmed      10     6
+          ahmed     11     7
+           ahmed    12     8
+            ahmed   13     9
+             ahmed  14     10
+              ahmed 15     11
+               ahme 16     12
+*/
+
 int main(void)
 {
 	PLL_init(CLK_40MHZ);
