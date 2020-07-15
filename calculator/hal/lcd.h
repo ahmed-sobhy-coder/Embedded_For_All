@@ -1,7 +1,7 @@
 #ifndef __LCD_H__
 #define __LCD_H__
 #include "tm4c123io.h"
-#include "bitManip.h"
+#include "bit.h"
 #include "systick.h"
 #include "strfuncs.h"
 

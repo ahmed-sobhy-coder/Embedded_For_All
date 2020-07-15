@@ -3,18 +3,18 @@
 void RGB_Init(uint8_t led){
   switch(led){
     case LED_RED:
-      GPIO_PinInit(RGB ,LED_RED,OUT);
+      GPIO_PinInit(RGB ,LED_RED,OUTPUT );
       break;
     case LED_BLUE:
-      GPIO_PinInit(RGB ,LED_BLUE,OUT);
+      GPIO_PinInit(RGB ,LED_BLUE,OUTPUT );
       break;
     case LED_GREEN:
-      GPIO_PinInit(RGB ,LED_GREEN,OUT);
+      GPIO_PinInit(RGB ,LED_GREEN,OUTPUT );
       break;
     default:
-      GPIO_PinInit(RGB,LED_RED,OUT);
-      GPIO_PinInit(RGB,LED_BLUE,OUT);
-      GPIO_PinInit(RGB,LED_GREEN,OUT);
+      GPIO_PinInit(RGB,LED_RED,OUTPUT );
+      GPIO_PinInit(RGB,LED_BLUE,OUTPUT );
+      GPIO_PinInit(RGB,LED_GREEN,OUTPUT );
   }
 }
 void RGB_Out(uint8_t led,uint8_t state){

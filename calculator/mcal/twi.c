@@ -332,7 +332,6 @@ void SLAVE_Single_Read_Byte_App(void)
 	I2C_Init(MODULE3, SLAVE, 0x08, NON);
 	RGB_Init(ALL);
 	uint8_t data;
-	uint8_t count;
 	while (1) {
 		data = I2C_SLAVE_Byte_Read(MODULE3);
 		if (data == 1) {
@@ -357,7 +356,6 @@ void MASTER_Single_Write_Byte_App(void)
 	sysclock = 40000000;
 	I2C_Init(MODULE3, MASTER, NON, 100000);
 	uint8_t count;
-	uint8_t data;
 	while (1)
 	{
 		for (count = 1; count < 4; count++)

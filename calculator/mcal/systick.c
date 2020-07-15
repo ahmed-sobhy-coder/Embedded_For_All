@@ -16,7 +16,7 @@ void msDelay(uint32_t ms) {
 		ST1B(SysTick->CTRL,SYS_EN); /*ENABLE_SYSTICK the down counter*/
 		ST1B(SysTick->CTRL,CLK_SRC);/*it means use the internal clock not PIOSC*/
 		while (RD1B(SysTick->CTRL,SYS_CNT) == 0)
-			; /* wait until down counter underfDIGITAL_LOW, 
+			; /* wait until down counter underfLOW, 
 			 wait until count bit becomes 1*/
 		ms--;
 	}
@@ -32,7 +32,7 @@ void usDelay(uint32_t us) {
 		ST1B(SysTick->CTRL,SYS_EN); /*ENABLE_SYSTICK the down counter*/
 		ST1B(SysTick->CTRL,CLK_SRC);/*it means use the internal clock not PIOSC*/
 		while (RD1B(SysTick->CTRL,SYS_CNT) == 0)
-			; /* wait until down counter underfDIGITAL_LOW, 
+			; /* wait until down counter underfLOW, 
 			 wait until count bit becomes 1*/
 		us--;
 	}

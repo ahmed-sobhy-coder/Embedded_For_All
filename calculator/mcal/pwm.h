@@ -1,7 +1,7 @@
 #ifndef _PWM_H__
 #define _PWM_H__
 
-#include "bitMAnip.h"
+#include "bit.h"
 #include "tm4c123io.h"
 #include "sysTick.h"
 #define M0PWM0 PB6 

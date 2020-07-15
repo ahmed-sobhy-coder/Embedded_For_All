@@ -402,11 +402,6 @@
               <FileType>1</FileType>
               <FilePath>.\app\source.c</FilePath>
             </File>
-            <File>
-              <FileName>uart_calculator_blutooth.uvoptx</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\uart_calculator_blutooth.uvoptx</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -426,6 +421,11 @@
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hal\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>switch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hal\switch.h</FilePath>
             </File>
             <File>
               <FileName>lcd.h</FileName>
@@ -451,11 +451,6 @@
               <FileName>switch.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hal\switch.c</FilePath>
-            </File>
-            <File>
-              <FileName>switch.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hal\switch.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -556,11 +551,6 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>bitManip.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lib\bitManip.h</FilePath>
-            </File>
-            <File>
               <FileName>math.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lib\math.c</FilePath>
@@ -594,6 +584,11 @@
               <FileName>array.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\lib\array.h</FilePath>
+            </File>
+            <File>
+              <FileName>bit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\bit.h</FilePath>
             </File>
           </Files>
         </Group>

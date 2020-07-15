@@ -1,7 +1,7 @@
 
 #ifndef __TWI_H__
 #define __TWI_H__
-#include "bitMAnip.h"
+#include "bit.h"
 #include "tm4c123io.h"
 #include "sysTick.h"
 #include "stdint.h"

@@ -1,5 +1,5 @@
 #include "math.h"
-uint32_t Get_Power(uint8_t num,uint8_t power){
+uint32_t getPower(uint8_t num,uint8_t power){
   uint32_t mul=1;
   while(power){
     mul*=num;

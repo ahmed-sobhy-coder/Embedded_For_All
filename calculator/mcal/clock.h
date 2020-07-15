@@ -1,6 +1,6 @@
 #ifndef _CLOCK_H__
 #define _CLOCK_H__
-#include "bitMAnip.h"
+#include "bit.h"
 #include "tm4c123io.h"
 #define MOSC           0
 #define XTAL           6

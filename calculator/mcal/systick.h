@@ -1,7 +1,7 @@
 #ifndef __SYSTICK_Timer_H__
 #define __SYSTICK_Timer_H__
 #include "stdint.h"
-#include "bitManip.h"
+#include "bit.h"
 #define CYCLES_OF_ONE_SECOND         16000000
 #define CYCLES_OF_ONE_MILLISECOND    16000
 #define CYCLES_OF_ONE_MICROSECOND    16

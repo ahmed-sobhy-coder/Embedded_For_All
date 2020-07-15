@@ -1,42 +1,42 @@
 #include "app.h"
-#include "servo.h"
+//#include "servo.h"
 uint32_t sysclock;
 int main(void)
 {
 	PLL_init(CLK_40MHZ);
 	sysclock = 40000000;
 #if (LCD_4BIT_INTERFACE == 1)
-//	GPIO_PortInit(LCD_PORT, OUT);//initialize portB as output
+//	GPIO_PortInit(LCD_PORT, OUTPUT );//initialize portB as output
 #else
-	GPIO_PortInit(LCD_DATA_PORT, OUT);//initialize portB as output
-	GPIO_PinInit(LCD_CONTROL_PORT, LCD_REGISTER_SELECT, OUT);
-	GPIO_PinInit(LCD_CONTROL_PORT, LCD_RW, OUT);
-	GPIO_PinInit(LCD_CONTROL_PORT, LCD_ENABLE, OUT);
+	GPIO_PortInit(LCD_DATA_PORT, OUTPUT );//initialize portB as output
+	GPIO_PinInit(LCD_CONTROL_PORT, LCD_REGISTER_SELECT, OUTPUT );
+	GPIO_PinInit(LCD_CONTROL_PORT, LCD_RW, OUTPUT );
+	GPIO_PinInit(LCD_CONTROL_PORT, LCD_ENABLE, OUTPUT );
 	LCD_4BIT_INTERFACE == 1
 #endif 
   LCD_Init();
-	RGB_LedInit(ALL);
-	GPIO_PortInit(PORTB,OUT);
-	GPIO_PinInit(PORTD,PD0,OUT);
-	GPIO_PinInit(PORTD,PD1,OUT);
-  GPIO_PinInit(PORTD,PD2,OUT);
-	GPIO_PinInit(PORTD,PD3,OUT);
-	GPIO_PinInit(PORTC,PC4,OUT);
-	GPIO_PinInit(PORTC,PC5,OUT);
-  GPIO_PinInit(PORTC,PC6,OUT);
-	GPIO_PinInit(PORTC,PC7,OUT);
+	RGB_Init(ALL);
+	GPIO_PortInit(PORTB,OUTPUT );
+	GPIO_PinInit(PORTD,PD0,OUTPUT );
+	GPIO_PinInit(PORTD,PD1,OUTPUT );
+  GPIO_PinInit(PORTD,PD2,OUTPUT );
+	GPIO_PinInit(PORTD,PD3,OUTPUT );
+	GPIO_PinInit(PORTC,PC4,OUTPUT );
+	GPIO_PinInit(PORTC,PC5,OUTPUT );
+  GPIO_PinInit(PORTC,PC6,OUTPUT );
+	GPIO_PinInit(PORTC,PC7,OUTPUT );
 
 
 while (1) {
-    GPIO_PortOutput(PORTB,LOW;
+    GPIO_PortOutput(PORTB,LOW);
 GPIO_PinOut(PORTD,PD0,HIGH);
 GPIO_PinOut(PORTD,PD1,HIGH);
-GPIO_PinOut(PORTD,PD2,LOW;
-GPIO_PinOut(PORTD,PD3,LOW;
-GPIO_PinOut(PORTC,PC4,LOW;
-GPIO_PinOut(PORTC,PC5,LOW;
-GPIO_PinOut(PORTC,PC6,LOW;
-GPIO_PinOut(PORTC,PC7,LOW;
+GPIO_PinOut(PORTD,PD2,LOW);
+GPIO_PinOut(PORTD,PD3,LOW);
+GPIO_PinOut(PORTC,PC4,LOW);
+GPIO_PinOut(PORTC,PC5,LOW);
+GPIO_PinOut(PORTC,PC6,LOW);
+GPIO_PinOut(PORTC,PC7,LOW);
 }
 }
 

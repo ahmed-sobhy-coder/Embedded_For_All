@@ -314,7 +314,7 @@ int32_t strToInt(int8_t* str)
 {
     uint32_t len = strLen(str);
     volatile uint8_t count = 0;
-    volatile uint32_t num = 0;
+    volatile int32_t num = 0;
     volatile uint8_t neg = 0;
     if ((str[count] == '-') && (len > 1))  //check if it is negative sign
     {
@@ -515,16 +515,7 @@ double strToFloat(int8_t* str)
     return num; //return integer number
 }
 
-/*get string from user */
-void getStr(int8_t* str) {
 
-    int8_t ch;// is used to hold character
-    int8_t count = 0; //used as a counter
-    while ((ch = getchar()) != '\n') {//check if the input character is new line
-        str[count++] = ch;//store character in string array
-    }
-    str[count] = '\0';//put null at the end 
-}
 /*insert new char in string */
 void insertChar(int8_t* str, int8_t ch, int8_t index)
 {

@@ -2,7 +2,7 @@
 #define __tm4c123io_H__
 
 #include "stdint.h"
-#include "bitManip.h"
+#include "bit.h"
 #include "TM4C123GH6PM.H"
 #define BIT0                 0
 #define BIT1                 1
@@ -66,7 +66,7 @@
 #define PF4               4U
 
 #define  UNLOCK           0x4C4F434B
-#define OUT      1
+#define OUTPUT PUT      1
 #define INPULUP  2
 #define INPULDN  3
 #define HIGH        1
@@ -95,6 +95,6 @@ void GPIO_PinOut(uint8_t port, uint8_t bits, uint8_t volt);
 void GPIO_PortInit(uint8_t port, uint8_t direction);
 void GPIO_PortOutput(uint8_t port, uint8_t volt) ;
 uint8_t GPIO_PinRead(uint8_t port, uint8_t bits) ;
-void GPIO_NibblePinsOut(uint8_t port, uint8_t startPin,uint8_t value) {
+void GPIO_NibblePinsOut(uint8_t port, uint8_t startPin,uint8_t value);
 
 #endif

@@ -37,14 +37,14 @@ void SWITCH_App2(void){
 		}
 	}
 }
-uint8_t SWITCH_Is_Pressed(uint8_t sw){
+uint8_t SWITCH_IsPressed(uint8_t sw){
 	uint8_t state=0;
 	switch(sw){
 	case SWITCH_1:
-		if(RD1B(SWITCH_PORT ,SWITCH_1)== LOW state=1;
+		if(RD1B(SWITCH_PORT ,SWITCH_1)== LOW) state=1;
 		break;
 	case SWITCH_2:
-		if(RD1B(SWITCH_PORT ,SWITCH_2)== LOW state=1;
+		if(RD1B(SWITCH_PORT ,SWITCH_2)== LOW) state=1;
 		break;
 	}	
 	return state;

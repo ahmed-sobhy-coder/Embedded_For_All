@@ -336,18 +336,18 @@ void SLAVE_Single_Read_Byte_App(void)
 	while (1) {
 		data = I2C_SLAVE_Byte_Read(MODULE3);
 		if (data == 1) {
-			RGB_Disable_All();
-			RGB_Led_Output(LED_RED, ON);
+			RGB_DisAll();
+			RGB_Out(LED_RED, ON);
 		}
 		else if (data == 2)
 		{
-			RGB_Disable_All();
-			RGB_Led_Output(LED_GREEN, ON);
+			RGB_DisAll();
+			RGB_Out(LED_GREEN, ON);
 		}
 		else if (data == 3)
 		{
-			RGB_Disable_All();
-			RGB_Led_Output(LED_BLUE, ON);
+			RGB_DisAll();
+			RGB_Out(LED_BLUE, ON);
 		}
 	}
 }

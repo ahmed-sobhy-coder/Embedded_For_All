@@ -551,11 +551,6 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>bitManip.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lib\bitManip.h</FilePath>
-            </File>
-            <File>
               <FileName>math.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lib\math.c</FilePath>
@@ -589,6 +584,11 @@
               <FileName>array.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\lib\array.h</FilePath>
+            </File>
+            <File>
+              <FileName>bit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\bit.h</FilePath>
             </File>
           </Files>
         </Group>

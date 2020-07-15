@@ -2,7 +2,7 @@
 #define __tm4c123io_H__
 
 #include "stdint.h"
-#include "bitManip.h"
+#include "bit.h"
 #include "TM4C123GH6PM.H"
 #define BIT0                 0
 #define BIT1                 1
@@ -66,7 +66,7 @@
 #define PF4               4U
 
 #define  UNLOCK           0x4C4F434B
-#define OUT      1
+#define OUTPUT       1
 #define INPULUP  2
 #define INPULDN  3
 #define HIGH        1

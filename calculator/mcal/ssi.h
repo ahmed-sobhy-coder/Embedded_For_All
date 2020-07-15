@@ -1,7 +1,7 @@
 #ifndef __SSI_H__
 #define __SSI_H__
 #include "stdint.h"
-#include "bitManip.h"
+#include "bit.h"
 #include "tm4c123io.h"
 
 #define SYS_CLOCK  0

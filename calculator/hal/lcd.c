@@ -309,7 +309,7 @@ void LCD_Print(int8_t* str)
 	if (strNoDot > noDotAL)//if the length of string is greater than 32
 	{
 		LCD_Print("sorry,string is too long,35 dot ");
-		LCD_SendStr(IntToStr(strNoDot));//convert string length to integer
+		LCD_SendStr(intToStr(strNoDot));//convert string length to integer
 	}
 	else
 	{

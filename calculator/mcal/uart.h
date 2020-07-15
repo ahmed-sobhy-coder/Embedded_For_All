@@ -2,7 +2,7 @@
 #define __UART_H__
 #include "stdint.h"
 #include "tm4c123io.h"
-#include "bitfuncs.h"
+#include "bit.h"
 #include "strfuncs.h"
 #include "nvic.h"
 #include "rgb.h"

@@ -1411,7 +1411,7 @@ void Uart_SendFloat(uint32_t uartn, double float_num, uint8_t precision)
 {
     Uart_SendStr(uartn, floatToStrWithReturn(float_num, precision));
 }
-
+/*
 void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both){
 	switch (uartn) {
 	case UT0: //U0RX  PA0 , U0TX PA1
@@ -1425,7 +1425,7 @@ void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both){
 			ST1B(GPIOA->DEN, PA1);
 			CLR1B(UART0->CTL, UARTEN);
 			STV(UART0->IBRD, BAUDINT(baudRate));//BAUDINT(baudRate);
-			STV6BI(UART0->FBRD, BIT0, BAUDFLOAT(baudRate));
+			STV6BI(UART0->FBRD, BIT0, BAUDFLOAT(sysclock,baudRate));
 			STV2BI(UART0->LCRH, WLEN, charcter_bits(8));
 			CLR1B(UART0->LCRH, STP2);
 			ST1B(UART0->LCRH, FEN);
@@ -1464,8 +1464,8 @@ void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both){
 			ST1B(GPIOA->DEN, PA1);
 			ST1B(GPIOA->DEN, PA0);
 			CLR1B(UART0->CTL, UARTEN);
-			STV(UART0->IBRD, BAUDINT(baudRate));//BAUDINT(baudRate);
-			STV6BI(UART0->FBRD, BIT0, BAUDFLOAT(baudRate));
+			STV(UART0->IBRD, BAUDINT(sysclock,baudRate));//BAUDINT(baudRate);
+			STV6BI(UART0->FBRD, BIT0, BAUDFLOAT(sysclock,baudRate));
 			STV2BI(UART0->LCRH, WLEN, charcter_bits(8));
 			CLR1B(UART0->LCRH, STP2);
 			//	ST1B(UART0->LCRH,FEN);
@@ -1479,6 +1479,6 @@ void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both){
 		}
 	}
 }
-
+*/
 
 

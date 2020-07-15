@@ -2,6 +2,7 @@
 #define __STRFUNCS_H__
 #include "stdint.h"
 #include  "math.h" 
+#include "string.h"
 int8_t* intToStr(int32_t num);
 void floatToStr(double float_num, uint8_t precision, int8_t* string);
 int8_t* floatToStrWithReturn(double float_num, uint8_t precision);
