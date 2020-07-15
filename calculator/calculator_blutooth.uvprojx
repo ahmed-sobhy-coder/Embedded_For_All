@@ -522,6 +522,16 @@
               <FileType>5</FileType>
               <FilePath>.\hal\switch.h</FilePath>
             </File>
+            <File>
+              <FileName>gsm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hal\gsm.c</FilePath>
+            </File>
+            <File>
+              <FileName>gsm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hal\gsm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

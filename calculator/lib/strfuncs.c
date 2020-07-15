@@ -212,8 +212,8 @@ int8_t* floatToStrWithReturn(double float_num, uint8_t precision)
         }
         string[counter2++] = '.';
         counter1 = counter2;
-        float_part = (int32_t)(float_num - integer_part)
-            * getPower(10, precision);
+        float_part = (int32_t)((float_num - integer_part)
+            * getPower(10, precision));
         if (float_part > 0)
         {
             while (float_part)

@@ -231,8 +231,7 @@ void LCD_GoToXY(uint8_t col, uint8_t row)
 
 void LCD_SendChrXY(uint8_t col, uint8_t row, int8_t chr)
 {
-     line=0 ;
-	 pos=0;
+     li
 	switch (row)
 	{
 	case LINE1:
@@ -251,8 +250,6 @@ void LCD_SendChrXY(uint8_t col, uint8_t row, int8_t chr)
 }
 void LCD_SendStrXY(uint8_t col, uint8_t row, int8_t* str)
 {
-    line=0;
-	pos=0;
 	switch (row)
 	{
 	case 1:
@@ -290,8 +287,6 @@ void LCD_SendStrMid(uint8_t row, int8_t* str)
 	uint8_t strNoDot = strLen(str); //no of dots string needs
 	uint8_t mid = (noDot1L - strNoDot) / 2; //the first int8_tin string will be printed in the 
 										 //dot which has position mid
-    line=0;
-	pos=0;
 	switch (row)
 	{
 	case 1:

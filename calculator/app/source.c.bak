@@ -38,7 +38,7 @@ int main(void)
 
     Uart_SendStrRcNl(UT0, "calcualtor ready..."); //print that TIVA is ready
     LCD_SendStrMid(LINE1,"Embedded Systems");
-	LCD_SendStrMid(LINE2,"CALCULATOR");
+	LCD_SendStrMid(LINE1,"CALCULATOR");
     RGB_Out(LED_RED, HIGH);
     HC05_init(DATA_MODE);
     double result;
