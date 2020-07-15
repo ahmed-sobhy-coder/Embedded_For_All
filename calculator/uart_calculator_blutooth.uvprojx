@@ -402,6 +402,11 @@
               <FileType>1</FileType>
               <FilePath>.\app\source.c</FilePath>
             </File>
+            <File>
+              <FileName>uart_calculator_blutooth.uvoptx</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\uart_calculator_blutooth.uvoptx</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

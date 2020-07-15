@@ -17,7 +17,7 @@ void RGB_Init(uint8_t led){
       GPIO_PinInit(RGB,LED_GREEN,OUT);
   }
 }
-void RGB_Output(uint8_t led,uint8_t state){
+void RGB_Out(uint8_t led,uint8_t state){
   switch(led){
     case LED_RED:
       switch(state){

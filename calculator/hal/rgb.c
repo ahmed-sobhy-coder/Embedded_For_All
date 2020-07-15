@@ -53,9 +53,9 @@ void RGB_Out(uint8_t led,uint8_t state){
 }
 
 void RGB_DisAll(void){
-	RGB_Output(LED_RED,OFF);
-	RGB_Output(LED_GREEN,OFF);
-	RGB_Output(LED_BLUE,OFF);
+	RGB_Out(LED_RED,OFF);
+	RGB_Out(LED_GREEN,OFF);
+	RGB_Out(LED_BLUE,OFF);
 }
 void RGB_Toggle(uint8_t led){
 	switch(led){

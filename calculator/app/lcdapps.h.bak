@@ -3,7 +3,7 @@
 #include "tm4c123io.h"
 #include "bitManip.h"
 #include "systick.h"
-#include "strfuncs.h"
+#include "stringManip.h"
 #include "lcd.h"
 void LCD_LoadingShape(void);
 void LCD_CloseDoor(void);
