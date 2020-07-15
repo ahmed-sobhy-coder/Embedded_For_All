@@ -1386,141 +1386,72 @@ void GPIO_PortOutput(uint8_t port, uint8_t volt) {
 		break;
 	}
 }
-void GPIO_Two_INDEXs_Output(uint8_t port, uint8_t start_INDEX,uint8_t value) {
+void GPIO_Two_INDEXs_Output(uint8_t port, uint8_t startPin,uint8_t value) {
 	switch (port) {
 	case PORTA:
-			STV2BI(GPIOA->DATA, start_INDEX, value);
+			STV2BI(GPIOA->DATA, startPin, value);
 		break;
 	case PORTB:
-			STV2BI(GPIOB->DATA, start_INDEX, value);
+			STV2BI(GPIOB->DATA, startPin, value);
 		break;
 	case PORTC:
-			STV2BI(GPIOC->DATA, start_INDEX, value);
+			STV2BI(GPIOC->DATA, startPin, value);
 		break;
 	case PORTD:
-			STV2BI(GPIOD->DATA, start_INDEX, value);
+			STV2BI(GPIOD->DATA, startPin, value);
 		break;
 	case PORTE:
-			STV2BI(GPIOE->DATA, start_INDEX, value);
+			STV2BI(GPIOE->DATA, startPin, value);
 		break;
 	case PORTF:
-			STV2BI(GPIOF->DATA, start_INDEX, value);
+			STV2BI(GPIOF->DATA, startPin, value);
 		break;
 	}
 }
-void GPIO_Three_INDEXs_Digital_Output(uint8_t port, uint8_t start_INDEX,uint8_t value) {
-	switch (port) {
-	case PORTA:
-			STV3BI(GPIOA->DATA, start_INDEX, value);
-		break;
-	case PORTB:
-			STV3BI(GPIOB->DATA, start_INDEX, value);
-		break;
-	case PORTC:
-			STV3BI(GPIOC->DATA, start_INDEX, value);
-		break;
-	case PORTD:
-			STV3BI(GPIOD->DATA, start_INDEX, value);
-		break;
-	case PORTE:
-			STV3BI(GPIOE->DATA, start_INDEX, value);
-		break;
-	case PORTF:
-			STV3BI(GPIOF->DATA, start_INDEX, value);
-		break;
-	}
-}
-void GPIO_Four_INDEXs_Digital_Output(uint8_t port, uint8_t start_INDEX,uint8_t value) {
-	switch (port) {
-	case PORTA:
-			STV4BI(GPIOA->DATA, start_INDEX, value);
-		break;
-	case PORTB:
-			STV4BI(GPIOB->DATA, start_INDEX, value);
-		break;
-	case PORTC:
-			STV4BI(GPIOC->DATA, start_INDEX, value);
-		break;
-	case PORTD:
-			STV4BI(GPIOD->DATA, start_INDEX, value);
-		break;
-	case PORTE:
-			STV4BI(GPIOE->DATA, start_INDEX, value);
-		break;
-	case PORTF:
-			STV4BI(GPIOF->DATA, start_INDEX, value);
-		break;
-	}
-}
-uint8_t GPIO_Two_INDEXs_Read_Input(uint8_t port, uint8_t start_INDEX) {
+
+uint8_t GPIO_Four_INDEXs_INPULUP_READ(uint8_t port, uint8_t startPin) {
 	uint8_t input = 0;
 	switch (port) {
 	case PORTA:
-			input = RD2B(GPIOA->DATA, start_INDEX);
+			input = RD4B(GPIOA->DATA, startPin);
 		break;
 	case PORTB:
-			input = RD2B(GPIOB->DATA, start_INDEX);
+			input = RD4B(GPIOB->DATA, startPin);
 		break;
 	case PORTC:
-			input = RD2B(GPIOC->DATA, start_INDEX);
+			input = RD4B(GPIOC->DATA, startPin);
 		break;
 	case PORTD:
-			input = RD2B(GPIOD->DATA, start_INDEX);
+			input = RD4B(GPIOD->DATA, startPin);
 		break;
 	case PORTE:
-			input = RD2B(GPIOE->DATA, start_INDEX);
+			input = RD4B(GPIOE->DATA, startPin);
 		break;
 	case PORTF:
-			input = RD2B(GPIOF->DATA, start_INDEX);
+			input = RD4B(GPIOF->DATA, startPin);
 		break;
 	}
 	return input;
 }
-uint8_t GPIO_Three_INDEXs_INPULUP_READ(uint8_t port, uint8_t start_INDEX) {
-	uint8_t input = 0;
+void GPIO_NibblePinsOut(uint8_t port, uint8_t startPin,uint8_t value) {
 	switch (port) {
 	case PORTA:
-			input = RD3B(GPIOA->DATA, start_INDEX);
+			STV4BI(GPIOA->DATA, startPin, value);
 		break;
 	case PORTB:
-			input = RD3B(GPIOB->DATA, start_INDEX);
+			STV4BI(GPIOB->DATA, startPin, value);
 		break;
 	case PORTC:
-			input = RD3B(GPIOC->DATA, start_INDEX);
+			STV4BI(GPIOC->DATA, startPin, value);
 		break;
 	case PORTD:
-			input = RD3B(GPIOD->DATA, start_INDEX);
+			STV4BI(GPIOD->DATA, startPin, value);
 		break;
 	case PORTE:
-			input = RD3B(GPIOE->DATA, start_INDEX);
+			STV4BI(GPIOE->DATA, startPin, value);
 		break;
 	case PORTF:
-			input = RD3B(GPIOF->DATA, start_INDEX);
+			STV4BI(GPIOF->DATA, startPin, value);
 		break;
 	}
-	return input;
-}
-uint8_t GPIO_Four_INDEXs_INPULUP_READ(uint8_t port, uint8_t start_INDEX) {
-	uint8_t input = 0;
-	switch (port) {
-	case PORTA:
-			input = RD4B(GPIOA->DATA, start_INDEX);
-		break;
-	case PORTB:
-			input = RD4B(GPIOB->DATA, start_INDEX);
-		break;
-	case PORTC:
-			input = RD4B(GPIOC->DATA, start_INDEX);
-		break;
-	case PORTD:
-			input = RD4B(GPIOD->DATA, start_INDEX);
-		break;
-	case PORTE:
-			input = RD4B(GPIOE->DATA, start_INDEX);
-		break;
-	case PORTF:
-			input = RD4B(GPIOF->DATA, start_INDEX);
-		break;
-	}
-	return input;
 }

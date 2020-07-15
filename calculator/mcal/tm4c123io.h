@@ -95,5 +95,6 @@ void GPIO_PinOut(uint8_t port, uint8_t bits, uint8_t volt);
 void GPIO_PortInit(uint8_t port, uint8_t direction);
 void GPIO_PortOutput(uint8_t port, uint8_t volt) ;
 uint8_t GPIO_PinRead(uint8_t port, uint8_t bits) ;
+void GPIO_NibblePinsOut(uint8_t port, uint8_t startPin,uint8_t value);
 
 #endif
