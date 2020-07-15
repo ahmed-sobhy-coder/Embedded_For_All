@@ -15,7 +15,7 @@ int main(void)
 	LCD_4BIT_INTERFACE == 1
 #endif 
   LCD_Init();
-	RGB_LedInit(ALL);
+	RGB_Init(ALL);
 	GPIO_PortInit(PORTB,OUT);
 	GPIO_PinInit(PORTD,PD0,OUT);
 	GPIO_PinInit(PORTD,PD1,OUT);
