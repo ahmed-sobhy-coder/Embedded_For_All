@@ -402,6 +402,16 @@
               <FileType>1</FileType>
               <FilePath>.\app\source.c</FilePath>
             </File>
+            <File>
+              <FileName>calc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\calc.h</FilePath>
+            </File>
+            <File>
+              <FileName>calc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\calc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -451,6 +461,16 @@
               <FileName>switch.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hal\switch.c</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\bluetooth.c</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lib\bluetooth.h</FilePath>
             </File>
           </Files>
         </Group>

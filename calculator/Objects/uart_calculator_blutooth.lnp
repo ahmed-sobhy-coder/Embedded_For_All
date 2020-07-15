@@ -1,10 +1,12 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\lcdapps.o"
 ".\objects\source.o"
+".\objects\calc.o"
 ".\objects\keypad.o"
 ".\objects\lcd.o"
 ".\objects\rgb.o"
 ".\objects\switch.o"
+".\objects\bluetooth.o"
 ".\objects\clock.o"
 ".\objects\nvic.o"
 ".\objects\pwm.o"

@@ -423,6 +423,11 @@
               <FilePath>.\hal\lcd.c</FilePath>
             </File>
             <File>
+              <FileName>switch.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hal\switch.h</FilePath>
+            </File>
+            <File>
               <FileName>lcd.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hal\lcd.h</FilePath>
@@ -448,9 +453,14 @@
               <FilePath>.\hal\switch.c</FilePath>
             </File>
             <File>
-              <FileName>switch.h</FileName>
+              <FileName>bluetooth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lib\bluetooth.c</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\hal\switch.h</FilePath>
+              <FilePath>.\lib\bluetooth.h</FilePath>
             </File>
           </Files>
         </Group>
