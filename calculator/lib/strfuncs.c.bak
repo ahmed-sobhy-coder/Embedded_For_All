@@ -368,7 +368,6 @@ int32_t strCmp(int8_t* string1, int8_t* string2)
     return -1;
 }
 /*check if two strings are matched*/
-
 int8_t strIsContain(int8_t* str1, int8_t* str2)
 {
     uint32_t str_len1 = strLen(str1);  //store string length of the first string
@@ -404,7 +403,7 @@ int8_t strIsContain(int8_t* str1, int8_t* str2)
 /* reverse string */
 void strRev(int8_t* str)
 {
-    uint8_t lstChrIndx = strLen(str) - 1; //last char index
+    uint8_t lstChrIndx = strLen(str) - 1; //last int8_tindex
     uint8_t count = 0, temp = 0; //initialize variables
     for (count = 0; count < (lstChrIndx / 2); count++) //loop until swapping is done
     {
@@ -443,10 +442,10 @@ int8_t isStrOfDigits(int8_t* str)
 
     return result;
 }
-//search char in string
+//search int8_tin string
 int8_t charSearch(int8_t* str, int8_t ch)
 {
-    volatile int8_t index = -1; //if the char is not exist return -1, else return the index
+    volatile int8_t index = -1; //if the int8_tis not exist return -1, else return the index
     volatile uint8_t count = 0; //is used as a counter
     while (str[count] != '\0') //loop all chars except null
     {
@@ -471,7 +470,7 @@ double strToFloat(int8_t* str)
     volatile float num = 0; //num is used to store the float number
     volatile uint8_t neg = 0;//it means its negative number 
     uint8_t pcount = 0; //to count number of powers
-    int8_t fpart = 0;//it is flag, rises when the char '.' is found 
+    int8_t fpart = 0;//it is flag, rises when the int8_t'.' is found 
     int8_t dotIndex = charSearch(str, '.'); //ge the index of '.'
     if (dotIndex >= 0) {//it has dot '.'
         len = dotIndex; // the length of float part
@@ -496,14 +495,14 @@ double strToFloat(int8_t* str)
         {
             if ((str[count] >= '0') && (str[count] <= '9'))//if the ch is valid digit
             {
-                num += (str[count] - '0') * ((double)1 / getPower(10, ++pcount)); //convert char to real number
+                num += (str[count] - '0') * ((double)1 / getPower(10, ++pcount)); //convert int8_tto real number
 
             }
         }
         else //calculating the integer part
         {
 
-            num += (str[count] - '0') * getPower(10, --len);//conver char to integer
+            num += (str[count] - '0') * getPower(10, --len);//conver int8_tto integer
 
         }
         count++; //increase the counter
@@ -515,17 +514,8 @@ double strToFloat(int8_t* str)
     return num; //return integer number
 }
 
-/*get string from user */
-void getStr(int8_t* str) {
 
-    int8_t ch;// is used to hold character
-    int8_t count = 0; //used as a counter
-    while ((ch = getchar()) != '\n') {//check if the input character is new line
-        str[count++] = ch;//store character in string array
-    }
-    str[count] = '\0';//put null at the end 
-}
-/*insert new char in string */
+/*insert new int8_tin string */
 void insertChar(int8_t* str, int8_t ch, int8_t index)
 {
     int8_t len = strLen(str);//get the length of string
@@ -537,7 +527,7 @@ void insertChar(int8_t* str, int8_t ch, int8_t index)
     }
     str[count] = ch;//insert character in the required position
 }
-//this function returns 1 if char is in string & return 0 if not
+//this function returns 1 if int8_tis in string & return 0 if not
 int8_t isContainCh(int8_t* str, int8_t ch)
 {
     int8_t count = 0;//is user as counter
@@ -553,7 +543,7 @@ int8_t isContainCh(int8_t* str, int8_t ch)
     }
     return result;
 }
-/* delete char from string */
+/* delete int8_tfrom string */
 void  delChar(int8_t* str, int8_t index) {
     uint8_t len = strLen(str);//get the length of string
     uint8_t count;//is used as a counter
@@ -562,4 +552,54 @@ void  delChar(int8_t* str, int8_t index) {
     {
         str[count] = str[count + 1];//shift elements
     }
+}
+/*get the index of str2 in str1*/
+uint8_t getStrIndex(int8_t* str1, int8_t* str2)
+{
+    uint32_t str_len1 = strLen(str1);  //store string length of the first string
+    uint32_t str_len2 = strLen(str2);  //the length of second string
+    uint32_t matched = 0;  //count number of matched characters
+    uint8_t index = -1; //initially we don't know the index of str2 so it is -1
+    uint8_t count ; // is used as a counter for chars
+	if (str_len1 >= str_len2)
+    {
+        while (str1[count] != '\0')
+        {  //str_len1 must be greater than str_len2 to continue loop
+            if (str1[count] == str2[matched]) //if the chars matched of str1&str2
+            {
+			    if(matched==0)
+				{
+					  index=count;   //the index of first int8_tin string 
+				}
+                matched++;  //increase the matching chars counter
+                if (matched == str_len2)  //if str1 & str2 matched
+                {
+                    break ;//stop looping
+                }
+            }
+            else
+            {
+                matched = 0; //reset the the matching counter
+				index=-1;      //reset index
+            }
+            count++; //increase the index counter, which points to the next char
+        }
+    }
+    return index;   //return index
+}
+/*delete str1 from str2*/
+void delStr(int8_t* str1,int8_t*str2)
+{
+   uint8_t index;//get the index of str2
+   uint8_t len=strLen(str2);//get the length of str2
+   uint8_t count;//is used as a counter for chars
+   if(strIsContain(str1,str2))
+   {    index=getStrIndex(str1,str2);//get the index of str2
+        count=index;
+		while(index<index+len)  //ahmedsobhy  //3+2
+		{
+			 delChar(str1,index); //delete character
+			 count++;  //increment counter
+		}
+   }
 }

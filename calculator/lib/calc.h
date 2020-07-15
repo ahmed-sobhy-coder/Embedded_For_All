@@ -6,7 +6,8 @@
 #include "array.h"
 #include "uart.h"
 int8_t isUnaryMinus(int8_t* str, int8_t index);
-void handleParenthesis(int8_t* str);
+uint8_t handleParenthesis(int8_t* str)  ;
+
 /*   string calculator function */
 double strCalc(double* nums, int8_t* opers);
 /* define rules for calculator in order to detect errors*/

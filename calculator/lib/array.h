@@ -8,4 +8,6 @@ void printFloatArr(double* arr, int32_t size);
 
 /* delete element from int array */
 void  delIntElement(double* nums, int8_t index, int size);
+/* delete element from double array */
+void  delDoubleElement(double* fnums, int8_t index, int size) ;
 #endif

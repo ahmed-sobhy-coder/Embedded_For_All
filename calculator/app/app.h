@@ -5,7 +5,6 @@
 #include "clock.h"
 #include "systick.h"
 #include "pwm.h"
-//#include "servo.h"
 #include "bit.h"
 #include "lcd.h"
 #include "lcdconfig.h"

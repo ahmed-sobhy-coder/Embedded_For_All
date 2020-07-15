@@ -75,7 +75,7 @@ typedef struct uart{
     uint8_t CHAR_LEN; //number of chars
     uint8_t NSTOP_BIT; //number of stop bit
     uint8_t PARITY_BIT; //parity bit even or odd
-    uint8_t MODE; //transmitter,receiver, both
+    uint8_t TYPE; //transmitter,receiver, both
 }UART_INIT_TYPE; //UART attributes
 typedef enum
 {

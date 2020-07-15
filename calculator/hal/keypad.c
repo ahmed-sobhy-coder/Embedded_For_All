@@ -1,5 +1,5 @@
 #include "keypad.h"
-const char keypad[4][4]={
+const int8_t keypad[4][4]={
 	{1,2,3,'A'},
 	{4,5,6,'B'},
 	{7,8,9,'C'},

@@ -50,7 +50,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -196,7 +196,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -342,7 +342,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -490,7 +490,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -635,7 +635,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -779,7 +779,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -923,7 +923,7 @@ void Uart_Init(uint8_t utn, UART_INIT_TYPE* utConfig)
             { //wait until the uartN module is ready
             };
         }
-        switch (utConfig->MODE)
+        switch (utConfig->TYPE)
         //TX or RX or BOTH
         {
         case TX:
@@ -1114,20 +1114,20 @@ void Uart_SendChar(uint8_t uartn, int8_t character)
 /* uart send array of chars*/
 void Uart_SendStr(uint8_t uartn, int8_t* str)
 {
-    uint8_t count = 0; //index to the next char to be transmitted
+    uint8_t count = 0; //index to the next int8_tto be transmitted
     while (str[count] != '\0')  //send all chars except null
     {
-        Uart_SendChar(uartn, str[count]); //send one char every time
+        Uart_SendChar(uartn, str[count]); //send one int8_tevery time
         count++;  //increment the index
     }
 }
 /* uart send array of chars*/
 void Uart_SendStrRcNl(uint8_t uartn, int8_t* str)
 {
-    uint8_t count = 0; //index to the next char to be transmitted
+    uint8_t count = 0; //index to the next int8_tto be transmitted
     while (str[count] != '\0')  //send all chars except null
     {
-        Uart_SendChar(uartn, str[count]); //send one char every time
+        Uart_SendChar(uartn, str[count]); //send one int8_tevery time
         count++;  //increment the index
     }
     Uart_SendChar(uartn, '\r'); //send '\r'
@@ -1144,55 +1144,55 @@ int8_t UART_GetChar(uint8_t uartn)
         }
         ;
         data = UART0->DR;
-        break; //hold the received char in data variable
+        break; //hold the received int8_tin data variable
     case UT1:
         while (RD1B(UART1->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART1->DR; //hold the received char in data variable
+        data = UART1->DR; //hold the received int8_tin data variable
         break;
     case UT2:
         while (RD1B(UART2->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART2->DR; //hold the received char in data variable
+        data = UART2->DR; //hold the received int8_tin data variable
         break;
     case UT3:
         while (RD1B(UART3->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART3->DR; //hold the received char in data variable
+        data = UART3->DR; //hold the received int8_tin data variable
         break;
     case UT4:
         while (RD1B(UART4->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART4->DR; //hold the received char in data variable
+        data = UART4->DR; //hold the received int8_tin data variable
         break;
     case UT5:
         while (RD1B(UART5->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART5->DR; //hold the received char in data variable
+        data = UART5->DR; //hold the received int8_tin data variable
         break;
     case UT6:
         while (RD1B(UART6->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART6->DR; //hold the received char in data variable
+        data = UART6->DR; //hold the received int8_tin data variable
         break;
     case UT7:
         while (RD1B(UART7->FR, RXFE) == 1) //if the buffer is empty wait until new character is received
         { // do nothing if the fifo is empty
         }
         ;
-        data = UART7->DR; //hold the received char in data variable
+        data = UART7->DR; //hold the received int8_tin data variable
         break;
     }
     return data; //return the received data

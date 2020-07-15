@@ -178,12 +178,12 @@ void LCD_Clr(void)
 {
 	LCD_SendCmd(0X1);//write space characters to all DDRAM addresses
 	usDelay(15200);//instruction execution time  
-	pos = 0;  //make the next char position 0
+	pos = 0;  //make the next int8_tposition 0
 	line = 1; //make the next line is line  1
 }
 void LCD_SendStr(int8_t* str)
 {
-	uint8_t count = 0; //it is used as an index to the next char to be sent
+	uint8_t count = 0; //it is used as an index to the next int8_tto be sent
 	while (str[count] != '\0') //loop until all chars are sent to LCD
 	{
 		if ((pos % 16) == 0 && (pos > 0))
@@ -242,7 +242,7 @@ void LCD_SendChrXY(uint8_t col, uint8_t row, int8_t chr)
 		usDelay(37);//command execution time 
 		break;
 	}
-	LCD_SendChr(chr);//send char to lcd
+	LCD_SendChr(chr);//send int8_tto lcd
 }
 void LCD_SendStrXY(uint8_t col, uint8_t row, int8_t* str)
 {
@@ -281,7 +281,7 @@ void LCD_SendStrMid(uint8_t row, int8_t* str)
 {
 	uint8_t noDot1L = 16;//no of dots in one line
 	uint8_t strNoDot = strLen(str); //no of dots string needs
-	uint8_t mid = (noDot1L - strNoDot) / 2; //the first char in string will be printed in the 
+	uint8_t mid = (noDot1L - strNoDot) / 2; //the first int8_tin string will be printed in the 
 										 //dot which has position mid
 	switch (row)
 	{

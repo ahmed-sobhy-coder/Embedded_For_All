@@ -17,7 +17,7 @@ void printIntArr(int32_t* arr, int32_t size) {
     printf("}\n");//after printing the array , do new line
 }
 /*print double array elements */
-void printFloatArr(double* arr, int32_t size) {
+void printDoubleElement(double* arr, int32_t size) {
     int count = 0;//count is used as counter
     printf("{"); //print {
     for (count = 0; count < size; count++)//loop all elements in array

@@ -4,10 +4,10 @@
 void HC05_init(uint8_t mode)
 {
     UART_INIT_TYPE huart;
-    huart.CHAR_LEN = 8; //char length
+    huart.CHAR_LEN = 8; //int8_tlength
     huart.NSTOP_BIT = 1; //number of stop bits
     huart.PARITY_BIT = 0; //parity is diabled
-    huart.MODE = BOTH; //activate both RX & TX
+    huart.TYPE = BOTH; //activate both RX & TX
     switch(mode)
     {
     case COMMAND_MODE:
