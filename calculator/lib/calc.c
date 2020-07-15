@@ -645,12 +645,12 @@ uint8_t strRules(int8_t* str)
    /* if ((isContainCh(str, '(') == 1) && (isOperator(str[charSearch(str, '(') - 1])))
     {
         result = 0;
-        printf("ERROR..\n");
+        print("ERROR..\n");
     }*/
     if ((isContainCh(str, ')') == 1) && (isOperator(str[charSearch(str, ')') - 1])))
     {
         result = 0;
-        printf("ERROR..\n");
+        print("ERROR..\n");
     }
     if (isOperator(str[strLen(str) - 1]) == 1 || (isOperator(str[0]) == 1))
     {
@@ -660,7 +660,7 @@ uint8_t strRules(int8_t* str)
         }
         else
         {
-            printf("ERROR..\n");
+            print("ERROR..\n");
             result = 0;
         }
 

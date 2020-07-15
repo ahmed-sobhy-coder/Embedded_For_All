@@ -39,7 +39,7 @@ void insertStr(int8_t* str1, int8_t* str2, uint32_t index);
 //convert double number to hex and store the result in string 
 int8_t* convDoubleToHexStr(double num,uint8_t precision);
 //convert double number to binary and store the result in string 
-int8_t* convDoubleToBinStr(double num, uint8_t precision);
+int8_t* convDoubleToBinStr(double num, uint8_t precision)
 #endif
 
 

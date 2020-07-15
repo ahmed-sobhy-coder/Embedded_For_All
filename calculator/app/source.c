@@ -45,15 +45,9 @@ int main(void)
     int8_t str[20];
     while (1)
     {
-    Uart_SendStr(UT0,floatToStrWithReturn(4.655, 3) );
-        RGB_Out(LED_BLUE, HIGH);
-       msDelay(1000);
-       RGB_DisAll();
-       msDelay(1000);
-       RGB_Out(LED_RED, HIGH);
-       msDelay(1000);
-       RGB_DisAll();
-       msDelay(1000);
-       Uart_SendStr(UT0,floatToStrWithReturn(4.655, 3) );
+		UART_GetStrRcNl(UT0,str,20);
+	    Uart_SendStrRcNl(UT0,convDoubleToHexStr(strToFloat(str),3));
+	    Uart_SendStrRcNl(UT0,convDoubleToBinStr(strToFloat(str),3));
+		msDelay(2000);
     }
 }

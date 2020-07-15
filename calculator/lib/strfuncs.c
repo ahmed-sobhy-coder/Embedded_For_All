@@ -1,88 +1,6 @@
 #include "strfuncs.h"
-int8_t* intToStr(int32_t num)
-{
-    static int8_t string[10];
-    uint32_t arr[10];
-    int32_t temp = num;
-    uint8_t counter1 = 0;
-    uint8_t counter2 = 0;
-    /*=================== BREAK THE NUMBER and store it in the array ======================*/
-    if (num == 0)
-    {
-        string[counter1++] = '0';
-        string[counter1++] = '\r';
-        string[counter1++] = '\n';
-        string[counter1] = '\0';
-    }
-    else if (num >= 0)
-    {
-        while (temp)
-        {
-            arr[counter2] = temp % 10;
-            temp /= 10;
-            counter2++;
-        }
-        /*============================== REARRANGE ARRAY========================*/
-        for (counter1 = 0; counter1 < (counter2 / 2); counter1++)
-        {
-            arr[counter1] += arr[(counter2 - 1) - counter1];
-            arr[(counter2 - 1) - counter1] = arr[counter1]
-                - arr[(counter2 - 1) - counter1];
-            arr[counter1] -= arr[(counter2 - 1) - counter1];
-        }
-        /*============================== STORE int8_t ACTERS =======================*/
-        for (counter1 = 0; counter1 < counter2; counter1++)
-        {
-            string[counter1] = arr[counter1] + '0';
-        }
-        //string[counter1++]='\r';
-        //string[counter1++]='\n';
-        string[counter1] = '\0';
-    }
-    else
-    {
-        string[0] = '-';
-        counter2++;
-        temp = temp * -1;
-        while (temp)
-        {
-            arr[counter2] = temp % 10;
-            temp /= 10;
-            counter2++;
-        }
-        /*============================== REARRANGE ARRAY========================*/
-        if (counter2 == 3)
-        {
-            for (counter1 = 1; counter1 <= (counter2 / 2); counter1++)
-            {
-                arr[counter1] += arr[(counter2 - counter1)];
-                arr[counter2 - counter1] = arr[counter1]
-                    - arr[counter2 - counter1];
-                arr[counter1] -= arr[counter2 - counter1];
-            }
-        }
-        else
-        {
-            for (counter1 = 1; counter1 < (counter2 / 2); counter1++)
-            {
-                arr[counter1] += arr[(counter2 - counter1)];
-                arr[counter2 - counter1] = arr[counter1]
-                    - arr[counter2 - counter1];
-                arr[counter1] -= arr[counter2 - counter1];
-            }
-        }
 
-        /*============================== STORE int8_tACTERS =======================*/
-        for (counter1 = 1; counter1 < counter2; counter1++)
-        {
-            string[counter1] = arr[counter1] + '0';
-        }
-        string[counter1] = '\0';
-    }
-    return string;
-
-}
-void floatToStr(double float_num, uint8_t precision,int8_t *string)
+void floatToStr(double float_num, uint8_t precision, int8_t* string)
 {
     int32_t integer_part, float_part;
     int32_t temp;
@@ -559,28 +477,28 @@ uint8_t getStrIndex(int8_t* str1, int8_t* str2)
     uint32_t str_len1 = strLen(str1);  //store string length of the first string
     uint32_t str_len2 = strLen(str2);  //the length of second string
     uint32_t matched = 0;  //count number of matched characters
-    uint8_t index = -1; //initially we don't know the index of str2 so it is -1
-    uint8_t count ; // is used as a counter for chars
-	if (str_len1 >= str_len2)
+    int8_t index = -1; //initially we don't know the index of str2 so it is -1
+    uint8_t count; // is used as a counter for chars
+    if (str_len1 >= str_len2)
     {
         while (str1[count] != '\0')
         {  //str_len1 must be greater than str_len2 to continue loop
             if (str1[count] == str2[matched]) //if the chars matched of str1&str2
             {
-			    if(matched==0)
-				{
-					  index=count;   //the index of first int8_tin string 
-				}
+                if (matched == 0)
+                {
+                    index = count;   //the index of first int8_tin string 
+                }
                 matched++;  //increase the matching chars counter
                 if (matched == str_len2)  //if str1 & str2 matched
                 {
-                    break ;//stop looping
+                    break;//stop looping
                 }
             }
             else
             {
                 matched = 0; //reset the the matching counter
-				index=-1;      //reset index
+                index = -1;      //reset index
             }
             count++; //increase the index counter, which points to the next char
         }
@@ -588,18 +506,228 @@ uint8_t getStrIndex(int8_t* str1, int8_t* str2)
     return index;   //return index
 }
 /*delete str1 from str2*/
-void delStr(int8_t* str1,int8_t*str2)
+void delStr(int8_t* str1, int8_t* str2)
 {
-   uint8_t index;//get the index of str2
-   uint8_t len=strLen(str2);//get the length of str2
-   uint8_t count;//is used as a counter for chars
-   if(strIsContain(str1,str2))
-   {    index=getStrIndex(str1,str2);//get the index of str2
-        count=index;
-		while(index<index+len)  //ahmedsobhy  //3+2
-		{
-			 delChar(str1,index); //delete character
-			 count++;  //increment counter
-		}
-   }
+    uint8_t index;//get the index of str2
+    uint8_t len = strLen(str2);//get the length of str2
+    uint8_t count;//is used as a counter for chars
+    if (strIsContain(str1, str2))
+    {
+        index = getStrIndex(str1, str2);//get the index of str2
+        count = index;
+        while (count < index + len)  //loop each char in str2
+        {
+            delChar(str1, index); //delete character
+            count++;  //increment counter
+        }
+    }
 }
+//insert str2 in str1
+void insertStr(int8_t* str1, int8_t* str2, uint32_t index)
+{
+    uint32_t count = 0;  //is used as a counter for chars
+    uint32_t nochars = strLen(str1) - 1;
+    if (index < nochars)  //check if str1 has that index
+    {
+        while (str2[count] != '\0')//loop all chars in str2 except null
+        {
+            str1[index + count] = str2[count];  //insert every char in str2 to str1
+            count++; //increment counter
+        }
+
+    }
+
+}
+void rearrange(int8_t* str)
+{
+    uint32_t count = 0;
+    uint32_t len = strLen(str);
+    for (count = 0; count < (len / 2); count++)
+    {
+        str[count] += str[len - count - 1];
+        str[len - count - 1] = str[count] - str[len - count - 1];
+        str[count] -= str[len - count - 1];
+    }
+}
+//convert double number to hex and store the result in string 
+int8_t* convDoubleToHexStr(double num, uint8_t precision)
+{
+    int32_t ipart = (int32_t)num; //get the integer part of number 
+    double fpart = num - ipart;//get the float part of number 
+    uint8_t count = 0;//points to next location to store char
+    uint32_t div, rem;//div is used to store the result of the division
+    static int8_t str[20];  //str stores hexa number as characters
+    double mul;    //is used for multiplication between 16 and float part
+	uint32_t count1=0; //is used as a counter for next char to be allocated after decimal point
+	if (num > 0)  //in case it is positive number
+    {
+        div = ipart;//div initially stores ipart
+        while (div)  //loop until div becomes 0
+        {
+            rem = div % 16; //rem stores the reminder
+            str[count] = "0123456789ABCDEF"[rem]; //store char
+            count++;//increment counter
+            div /= 16;  //divide by 16
+        }
+        str[count] = '\0';    //terminate string with null
+        rearrange(str); //rearrange string
+		if(fpart>0.0)     //if the float part is more than 0
+		{
+		   str[count++]='.';  // store '.' char which is the decimal point 
+		   while(count1<precision)    //how many digits you want after decimal point is determined by precision
+		   {
+		     mul=fpart*16;//multiply the float part by 16
+			 str[count+count1]="0123456789ABCDEF"[(uint32_t)mul];//store hex digit as char
+			 fpart = mul-(int32_t)mul;   //get the float part which is after decimal point
+			 count1++; //increment counter1
+		   }
+			str[count+count1]='\0'; //terminate string with null
+		}
+
+    }
+	else if(num==0)    //if double number is 0
+	{
+		   str[count++]='0';    //store 0
+		   str[count++]='.';    //storer decimal point
+		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
+		   {
+			  str[count+count1]='0';//store 0 after decimal point
+			  count1++; //increment counter 
+		   }
+		   str[count+count1]='\0'; //terminal by null
+	}
+    return str; //return string 
+}
+//convert double number to binary and store the result in string 
+int8_t* convDoubleToBinStr(double num, uint8_t precision)
+{
+     int32_t ipart = (int32_t)num; //get the integer part of number 
+    double fpart = num - ipart;//get the float part of number 
+    uint8_t count = 0;//points to next location to store char
+    uint32_t div, rem;//div is used to store the result of the division
+    static int8_t str[20];  //str stores hexa number as characters
+    double mul;    //is used for multiplication between 16 and float part
+	uint32_t count1=0; //is used as a counter for next char to be allocated after decimal point
+	if (num > 0)  //in case it is positive number
+    {
+        div = ipart;//div initially stores ipart
+        while (div)  //loop until div becomes 0
+        {
+            rem = div % 2; //rem stores the reminder
+            str[count] = "01"[rem]; //store char
+            count++;//increment counter
+            div /= 2;  //divide by 2
+        }
+        str[count] = '\0';    //terminate string with null
+        rearrange(str); //rearrange string
+		if(fpart>0.0)     //if the float part is more than 0
+		{
+		   str[count++]='.';  // store '.' char which is the decimal point 
+		   while(count1<(precision*4))    //how many digits you want after decimal point is determined by precision
+		   {
+		     mul=fpart*2;//multiply the float part by 16
+			 str[count+count1]="01"[(uint32_t)mul];//store binary digit as char
+			 fpart = mul-(int32_t)mul;   //get the float part which is after decimal point
+			 count1++; //increment counter1
+		   }
+			str[count+count1]='\0'; //terminate string with null
+		}
+
+    }
+	else if(num==0)    //if double number is 0
+	{
+		   str[count++]='0';    //store 0
+		   str[count++]='.';    //storer decimal point
+		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
+		   {
+			  str[count+count1]='0';//store 0 after decimal point
+			  count1++; //increment counter 
+		   }
+		   str[count+count1]='\0'; //terminal by null
+	}
+    return str; //return string 
+}
+int8_t* intToStr(int32_t num)
+{
+    static int8_t string[10];
+    uint32_t arr[10];
+    int32_t temp = num;
+    uint8_t counter1 = 0;
+    uint8_t counter2 = 0;
+    /*=================== BREAK THE NUMBER and store it in the array ======================*/
+    if (num == 0)
+    {
+        string[counter1++] = '0';
+        string[counter1++] = '\r';
+        string[counter1++] = '\n';
+        string[counter1] = '\0';
+    }
+    else if (num >= 0)
+    {
+        while (temp)
+        {
+            arr[counter2] = temp % 10;
+            temp /= 10;
+            counter2++;
+        }
+        /*============================== REARRANGE ARRAY========================*/
+        for (counter1 = 0; counter1 < (counter2 / 2); counter1++)
+        {
+            arr[counter1] += arr[(counter2 - 1) - counter1];
+            arr[(counter2 - 1) - counter1] = arr[counter1]
+                - arr[(counter2 - 1) - counter1];
+            arr[counter1] -= arr[(counter2 - 1) - counter1];
+        }
+        /*============================== STORE int8_t ACTERS =======================*/
+        for (counter1 = 0; counter1 < counter2; counter1++)
+        {
+            string[counter1] = arr[counter1] + '0';
+        }
+        //string[counter1++]='\r';
+        //string[counter1++]='\n';
+        string[counter1] = '\0';
+    }
+    else
+    {
+        string[0] = '-';
+        counter2++;
+        temp = temp * -1;
+        while (temp)
+        {
+            arr[counter2] = temp % 10;
+            temp /= 10;
+            counter2++;
+        }
+        /*============================== REARRANGE ARRAY========================*/
+        if (counter2 == 3)
+        {
+            for (counter1 = 1; counter1 <= (counter2 / 2); counter1++)
+            {
+                arr[counter1] += arr[(counter2 - counter1)];
+                arr[counter2 - counter1] = arr[counter1]
+                    - arr[counter2 - counter1];
+                arr[counter1] -= arr[counter2 - counter1];
+            }
+        }
+        else
+        {
+            for (counter1 = 1; counter1 < (counter2 / 2); counter1++)
+            {
+                arr[counter1] += arr[(counter2 - counter1)];
+                arr[counter2 - counter1] = arr[counter1]
+                    - arr[counter2 - counter1];
+                arr[counter1] -= arr[counter2 - counter1];
+            }
+        }
+
+        /*============================== STORE int8_tACTERS =======================*/
+        for (counter1 = 1; counter1 < counter2; counter1++)
+        {
+            string[counter1] = arr[counter1] + '0';
+        }
+        string[counter1] = '\0';
+    }
+    return string;
+
+}
+

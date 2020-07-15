@@ -6,5 +6,5 @@
 #define DATA_MODE      2
 void HC05_init(uint8_t mode);
 //print to terminal and bluetooth 
-void print(int8_t* str);
+void print(int8_t* str)
 #endif

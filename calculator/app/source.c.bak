@@ -38,22 +38,15 @@ int main(void)
 
     Uart_SendStrRcNl(UT0, "calcualtor ready..."); //print that TIVA is ready
     LCD_SendStrMid(LINE1,"Embedded Systems");
-	LCD_SendStrMid(LINE1,"CALCULATOR");
+	LCD_SendStrMid(LINE2,"CALCULATOR");
     RGB_Out(LED_RED, HIGH);
     HC05_init(DATA_MODE);
     double result;
     int8_t str[20];
     while (1)
     {
-    Uart_SendStr(UT0,floatToStrWithReturn(4.655, 3) );
-        RGB_Out(LED_BLUE, HIGH);
-       msDelay(1000);
-       RGB_DisAll();
-       msDelay(1000);
-       RGB_Out(LED_RED, HIGH);
-       msDelay(1000);
-       RGB_DisAll();
-       msDelay(1000);
-       Uart_SendStr(UT0,floatToStrWithReturn(4.655, 3) );
+		/UART_GetStrRcNl(UT0,str,20);
+	    Uart_SendStrRcNl(UT0,convDoubleToHexStr(0,3));
+		msDelay(2000);
     }
 }
