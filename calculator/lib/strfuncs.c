@@ -559,8 +559,20 @@ int8_t* convDoubleToHexStr(double num, uint8_t precision)
     static int8_t str[20];  //str stores hexa number as characters
     double mul;    //is used for multiplication between 16 and float part
 	uint32_t count1=0; //is used as a counter for next char to be allocated after decimal point
-	if (num > 0)  //in case it is positive number
-    {
+
+	if(num==0)    //if double number is 0
+	{
+		   str[count++]='0';    //store 0
+		   str[count++]='.';    //storer decimal point
+		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
+		   {
+			  str[count+count1]='0';//store 0 after decimal point
+			  count1++; //increment counter 
+		   }
+		   str[count+count1]='\0'; //terminal by null
+	}
+	else
+	{
         div = ipart;//div initially stores ipart
         while (div)  //loop until div becomes 0
         {
@@ -584,17 +596,6 @@ int8_t* convDoubleToHexStr(double num, uint8_t precision)
 			str[count+count1]='\0'; //terminate string with null
 		}
 
-    }
-	else if(num==0)    //if double number is 0
-	{
-		   str[count++]='0';    //store 0
-		   str[count++]='.';    //storer decimal point
-		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
-		   {
-			  str[count+count1]='0';//store 0 after decimal point
-			  count1++; //increment counter 
-		   }
-		   str[count+count1]='\0'; //terminal by null
 	}
     return str; //return string 
 }
@@ -608,8 +609,19 @@ int8_t* convDoubleToBinStr(double num, uint8_t precision)
     static int8_t str[20];  //str stores hexa number as characters
     double mul;    //is used for multiplication between 16 and float part
 	uint32_t count1=0; //is used as a counter for next char to be allocated after decimal point
-	if (num > 0)  //in case it is positive number
-    {
+	if(num==0)    //if double number is 0
+	{
+		   str[count++]='0';    //store 0
+		   str[count++]='.';    //storer decimal point
+		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
+		   {
+			  str[count+count1]='0';//store 0 after decimal point
+			  count1++; //increment counter 
+		   }
+		   str[count+count1]='\0'; //terminal by null
+	}
+	else
+	{
         div = ipart;//div initially stores ipart
         while (div)  //loop until div becomes 0
         {
@@ -631,19 +643,7 @@ int8_t* convDoubleToBinStr(double num, uint8_t precision)
 			 count1++; //increment counter1
 		   }
 			str[count+count1]='\0'; //terminate string with null
-		}
-
-    }
-	else if(num==0)    //if double number is 0
-	{
-		   str[count++]='0';    //store 0
-		   str[count++]='.';    //storer decimal point
-		   while(count1<precision)  //how many digits you want after decimal point is determined by precision
-		   {
-			  str[count+count1]='0';//store 0 after decimal point
-			  count1++; //increment counter 
-		   }
-		   str[count+count1]='\0'; //terminal by null
+		}	
 	}
     return str; //return string 
 }
@@ -658,8 +658,6 @@ int8_t* intToStr(int32_t num)
     if (num == 0)
     {
         string[counter1++] = '0';
-        string[counter1++] = '\r';
-        string[counter1++] = '\n';
         string[counter1] = '\0';
     }
     else if (num >= 0)

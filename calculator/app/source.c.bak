@@ -45,8 +45,7 @@ int main(void)
     int8_t str[20];
     while (1)
     {
-		/UART_GetStrRcNl(UT0,str,20);
-	    Uart_SendStrRcNl(UT0,convDoubleToHexStr(0,3));
-		msDelay(2000);
+		UART_GetStrRcNl(UT0,str,20);
+        
     }
 }
