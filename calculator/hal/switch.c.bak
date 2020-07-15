@@ -3,10 +3,10 @@
 void SWITCH_Init(uint32_t sw) {
 	switch (sw) {
 	case SWITCH_1:
-		GPIO_PinInit(PORTF, SWITCH_1, INPULUP);
+		GPIO_PinInit(PORTF, SWITCH_1, DIGITAL_INPUT_INERNAL_PULLUP);
 		break;
 	case SWITCH_2:
-		GPIO_PinInit(PORTF, SWITCH_2, INPULUP);
+		GPIO_PinInit(PORTF, SWITCH_2, DIGITAL_INPUT_INERNAL_PULLUP);
 		break;
 	}
 }

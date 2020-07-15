@@ -10,7 +10,7 @@
 #define RGB                  PORTF
 #define RGB_PORT            (GPIOF->DATA)
 void RGB_Init(uint8_t led);
-void RGB_Output(uint8_t led,uint8_t state);
+void RGB_Out(uint8_t led,uint8_t state);
 void RGB_DisAll(void);
 void RGB_Toggle(uint8_t led);
 #endif

@@ -67,8 +67,8 @@
 
 #define  UNLOCK           0x4C4F434B
 #define OUT      1
-#define INPULUP  2
-#define INPULDN  3
+#define DIGITAL_INPUT_INERNAL_PULLUP  2
+#define DIGITAL_INPUT_INERNAL_PULLDOWN  3
 #define HIGH        1
 #define LOW        0
 #define OFF                 0
