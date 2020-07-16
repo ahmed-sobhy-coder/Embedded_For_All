@@ -42,7 +42,7 @@ void  delChar(int8_t* str, int8_t index);
 int8_t strIsContain(int8_t* str1, int8_t* str2) ; 
 
 /*get the index of str2 in str1*/
-uint8_t getStrIndex(int8_t* str1, int8_t* str2) ;
+int8_t getStrIndex(int8_t* str1, int8_t* str2) ;
 
 /*delete str1 from str2*/
 void delStr(int8_t* str1,int8_t*str2) ;
