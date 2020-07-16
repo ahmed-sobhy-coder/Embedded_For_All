@@ -4,8 +4,7 @@
 #include  "math.h" 
 #include "string.h"
 int8_t* intToStr(int32_t num);
-void floatToStr(double float_num, uint8_t precision, int8_t* string);
-int8_t* floatToStrWithReturn(double float_num, uint8_t precision);
+int8_t* floatToStr(double float_num, uint8_t precision);
 uint8_t strLen(int8_t* string);
 uint8_t Slen_without_CR(int8_t* string);
 void strCopy(int8_t* str1, int8_t* str2);

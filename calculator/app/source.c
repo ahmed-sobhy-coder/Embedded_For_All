@@ -46,8 +46,6 @@ int main(void)
     while (1)
     {
 		UART_GetStrRcNl(UT0,str,20);
-	    Uart_SendStrRcNl(UT0,convDoubleToHexStr(strToFloat(str),3));
-	    Uart_SendStrRcNl(UT0,convDoubleToBinStr(strToFloat(str),3));
-		msDelay(2000);
+	    Uart_SendStrRcNl(UT0,floatToStr(strToFloat(str),4));
     }
 }
