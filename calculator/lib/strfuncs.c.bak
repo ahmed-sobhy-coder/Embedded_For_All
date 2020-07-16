@@ -1,119 +1,21 @@
 #include "strfuncs.h"
-int8_t* floatToStrWithReturn(double float_num, uint8_t precision)
-{
-    static int8_t string[20];
-    int32_t integer_part, float_part;
-    int32_t temp;
-    int8_t counter1 = 0, counter2 = 0, counter = 0;
-    if (float_num >= 0)
-    { //+ve float number
-        integer_part = (int32_t)float_num;
-        temp = integer_part;
-        if (temp > 0)
-        {
-            while (temp)
-            {
-                string[counter2++] = (temp % 10) + '0';
-                temp /= 10;
-            }
-        }
-        else
-        {
-            string[counter2++] = 0 + '0';
-        }
-        for (counter1 = 0; counter1 < (counter2 / 2); counter1++)
-        {
-            string[counter1] ^= string[(counter2 - 1) - counter1];
-            string[(counter2 - 1) - counter1] ^= string[counter1];
-            string[counter1] ^= string[(counter2 - 1) - counter1];
-        }
-        string[counter2++] = '.';
-        counter1 = counter2;
-        float_part = (int32_t)((float_num - integer_part)
-            * getPower(10, precision));
-        if (float_part > 0)
-        {
-            while (float_part)
-            {
-                string[counter2++] = (float_part % 10) + '0';
-                float_part /= 10;
-            }
-        }
-        else
-        {
-            string[counter2++] = 0 + '0';
-        }
-        for (counter = 0; counter < (counter2 - counter1) / 2; counter++)
-        {
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-            string[(counter2 - 1) - counter] ^= string[counter1 + counter];
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-        }
-        string[counter2] = '\0';
-    }
-    else
-    {  // negative float number
-        string[counter2++] = '-';
-        counter1 = counter2;
-        integer_part = (int32_t)float_num * -1;
-        temp = integer_part;
-        if (temp > 0)
-        {
-            while (temp)
-            {
-                string[counter2++] = (temp % 10) + '0';
-                temp /= 10;
-            }
-        }
-        else
-        {
-            string[counter2++] = 0 + '0';
-        }
-        for (counter = 0; counter < (counter2 - counter1) / 2; counter++)
-        {
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-            string[(counter2 - 1) - counter] ^= string[counter1 + counter];
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-        }
-        string[counter2++] = '.';
-        counter1 = counter2;
-        float_part = (int32_t)((float_num * -1) - integer_part)
-            * getPower(10, precision);
-        if (float_part > 0)
-        {
-            while (float_part)
-            {
-                string[counter2++] = (float_part % 10) + '0';
-                float_part /= 10;
-            }
-        }
-        else
-        {
-            string[counter2++] = 0 + '0';
-        }
-        for (counter = 0; counter < (counter2 - counter1) / 2; counter++)
-        {
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-            string[(counter2 - 1) - counter] ^= string[counter1 + counter];
-            string[counter1 + counter] ^= string[(counter2 - 1) - counter];
-        }
-    }
-    string[counter2] = '\0';
-    return string;
-}
+/*get sting length */
 uint8_t strLen(int8_t* str)
 {
-    uint8_t count = 0;
-    while (str[count] != '\0')
-        count++;
-    return count;
+    uint8_t count = 0;   //is used as a counter
+    while (str[count] != '\0')    //loop all chars except null
+	{
+	   count++;  //increment counter
+	} 
+    return count;   //return number of chars in string 
 }
-uint8_t Slen_without_CR(int8_t* string)
+/* get get number of chars in string till reaching terminator*/
+uint8_t strLenTerm(int8_t* str,int8_t term)
 {
-    uint8_t counter = 0;
-    while (*string++ != '\r')
-        counter++;
-    return counter;
+    uint8_t count = 0; //initiali value for counter
+    while (str[count] != term)  //loop all chars except terminator
+        count++;//increment counter
+    return count;//return number of chars in string 
 }
 /* copy to str2 into str1*/
 void strCopy(int8_t* str1, int8_t* str2)
@@ -129,25 +31,20 @@ void strCopy(int8_t* str1, int8_t* str2)
 /* convert string of digits to real number*/
 int32_t strToInt(int8_t* str)
 {
-    uint32_t len = strLen(str);
-    volatile uint8_t count = 0;
-    volatile int32_t num = 0;
-    volatile uint8_t neg = 0;
+    uint32_t len = strLen(str);  //get leneth of string 
+    volatile uint8_t count = 0; //is used as a counter
+    volatile int32_t num = 0; //is used to hold number
+    volatile uint8_t neg = 0; //if it is negative, heg will be 1
     if ((str[count] == '-') && (len > 1))  //check if it is negative sign
     {
-        len--;
+        len--; //decrease the length 
         neg = 1;  //rise flag it is negative number
         count++;  //increase the counter
     }
-    if (isStrOfDigits(str + count) == -1) //check if str has invalid chars which are not digits
-    {
-        num = 0; //error
-    }
-    else
-    {
-        while (str[count] != '\0')
+    if (isStrOfDigits(str + count) == 1){//check if str has invalid chars which are not digits
+        while (str[count] != '\0')   //loop all chars except null
         {
-            if ((str[count] >= '0') && (str[count] <= '9'))
+            if ((str[count] >= '0') && (str[count] <= '9'))//the char must be between '0' and '9'
             {
                 num += (str[count] - '0') * getPower(10, --len);
                 count++; //increase the counter
@@ -160,28 +57,51 @@ int32_t strToInt(int8_t* str)
     }
     return num; //return integer number
 }
-
-int32_t strCmp(int8_t* string1, int8_t* string2)
+/*
+compare between two strings str1 & str2
+if they are matched return 0
+if str1>str2  return  1
+if str1<str2  return  -1
+*/
+int8_t strCmp(int8_t* str1, int8_t* str2)
 {
-    uint8_t counter = 0;
-    uint8_t length_string1 = strLen(string1);
-    uint8_t length_string2 = strLen(string2);
-    counter = 0;
-    if (length_string1 == length_string2)
+    uint8_t count = 0; //is used as counter
+    uint8_t lenstr1 = strLen(str1); //get the length of string 1
+    uint8_t lengstr2 = strLen(str2);//get the length of strig 2
+	uint8_t result;//return 0 ->matched, 1 ->str1>str2 , -1 ->str1<str2
+    if (lenstr1 > lengstr2 ) //if len of str1 > len of str2
     {
-        while ((*string1 == *string2) && (*string1 != '\0')
-            && (*string2 != '\0'))
-        {
-            counter++;
-            string1++;
-            string2++;
-        }
-        if (counter == length_string1)
-        {
-            return 0;
-        }
+		result =1;  //return 1 means str1 is greater
     }
+	else if (lenstr1 < lengstr2) //if len of str1 < len of str2
+	{
+	   result =-1;  //return -1 means str2 is greater
+	}
+	else if (lenstr1 == lengstr2)//if len of str1 == len of str2
+	 {
+			while(str1[count]!='\0') //loop all chars except null
+			{
+				if(str1[count]==str2[count])  //if two chars are matched
+				{
+					count++;     //increment counter
 
+				}
+				else if(str1[count]>str2[count]) //if char of str1 is greater than char of str2
+				{
+				      result=1;  //return 1 means str1 is greater
+				       break;//stop looping
+				}
+				else  //if char of str2 is greater than char of str1
+				{
+				     result=-1;   //return -1 means str2 is greater
+				     break;//stop looping
+				}
+			}
+			if(lenstr1==count) //if length equal number of compared chars
+			{
+				result=0;//return 0 mtwo strings are matched 
+			}
+	 }
     return -1;
 }
 /*check if two strings are matched*/
@@ -234,8 +154,8 @@ int8_t isStrOfDigits(int8_t* str)
 {
     int8_t count = 0; // is used as a counter
     int8_t result = 0; //return 1 if all chars are digits
-    int8_t len = strLen(str);
-    if (len > 0)
+    int8_t len = strLen(str);  //get string length
+    if (len > 0)  //if len is greater than 0
     {
 
         while (str[count] != '\0') //loop all chars except null
@@ -246,13 +166,13 @@ int8_t isStrOfDigits(int8_t* str)
             }
             else
             {
-                break;
+                break;   //it is invalid digit
 
             }
         }
-        if (count == strLen(str))
+        if (count == strLen(str))  //if they are matched
         {
-            result = 1;
+            result = 1; //return it is string of digits
         }
 
     }
@@ -437,15 +357,19 @@ void insertStr(int8_t* str1, int8_t* str2, uint32_t index)
     }
 
 }
+/*
+this function is used in function which convert numbers to string 
+it simply do swapping btn first & last characters
+*/
 void rearrange(int8_t* str)
 {
-    uint32_t count = 0;
-    uint32_t len = strLen(str);
-    for (count = 0; count < (len / 2); count++)
+    uint32_t count = 0; //is used for looping 
+    uint32_t len = strLen(str);//get the length of string
+    for (count = 0; count < (len / 2); count++)  //loop to do swapping
     {
-        str[count] += str[len - count - 1];
-        str[len - count - 1] = str[count] - str[len - count - 1];
-        str[count] -= str[len - count - 1];
+        str[count] += str[len - count - 1]; //first element will have the result the addition of first and last element
+        str[len - count - 1] = str[count] - str[len - count - 1];//last element ill have the value of first element 
+        str[count] -= str[len - count - 1];  //first element will have the value of last element
     }
 }
 //convert double number to hex and store the result in string 

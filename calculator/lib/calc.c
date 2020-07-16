@@ -690,7 +690,7 @@ uint8_t handleParenthesis(int8_t* str)
             extractOpers(str + firstBraceIndx + 1, opers);
             extractFnums(str + firstBraceIndx + 1, fnums, opers);
             result = strCalc(fnums, opers);
-            ptr = floatToStrWithReturn(result, 3);
+            ptr = floatToStr(result, 3);
             count = firstBraceIndx;
             while (str[count] != '\0')
             {
