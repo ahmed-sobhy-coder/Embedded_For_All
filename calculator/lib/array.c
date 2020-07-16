@@ -1,38 +1,6 @@
 #include "array.h"
 #include"stdio.h"
-/*print integer array elements */
-void printIntArr(int32_t* arr, int32_t size) {
-    int count = 0;//count is used as counter
-    print("{");//print {
-    for (count = 0; count < size; count++)//loop all elements in array
-    {
-        print("%d", arr[count]);//print int element
-        if (count + 1 == size) { //this check is done to not print ',' character
-            continue;//skip print ',' char
-        }
-        else {
-            print(",");//print ','
-        }
-    }
-    print("}\n");//after printing the array , do new line
-}
-/*print double array elements */
-void printDoubleElement(double* arr, int32_t size) {
-    int count = 0;//count is used as counter
-    print("{"); //print {
-    for (count = 0; count < size; count++)//loop all elements in array
-    {
-        print("%f", arr[count]);//print double element
-        if (count + 1 == size) { //this check is done to not print ',' character
-            continue;//skip print ',' char
-        }
-        else {
-            print(",");//print ','
-        }
-    }
-    print("}\n");//after printing the array , do new line
 
-}
 /* delete element from int array */
 void  delIntElement(double* nums, int8_t index, int size) {
     uint8_t count;//is used as a counter

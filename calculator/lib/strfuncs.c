@@ -482,7 +482,6 @@ int8_t* intToStr(int32_t num)
     if (num == 0)    //if integer number is 0
     {
         str[count++] = '0';    //store 0
-        str[count++] = '.';    //storer decimal point
         str[count + count1] = '\0'; //terminal by null
     }
     else

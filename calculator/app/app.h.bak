@@ -9,5 +9,4 @@
 #include "lcd.h"
 #include "lcdconfig.h"
 #include "lcdapps.h"
-#include "calc.h"
 #endif

@@ -1409,7 +1409,7 @@ void Uart_SendInt(uint8_t uartn, uint32_t num)
 }
 void Uart_SendFloat(uint32_t uartn, double float_num, uint8_t precision)
 {
-    Uart_SendStr(uartn, floatToStrWithReturn(float_num, precision));
+    Uart_SendStr(uartn, floatToStr(float_num, precision));
 }
 //print to terminal and bluetooth 
 void printTerm(int8_t* str)

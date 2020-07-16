@@ -5,7 +5,7 @@ uint32_t sysclock;
 UART_INIT_TYPE huart0;
 UART_INIT_TYPE huart2;
 int32_t previous = 0;
-
+extern uint8_t error;
 int main(void)
 {
     PLL_init(CLK_40MHZ);
@@ -46,6 +46,18 @@ int main(void)
     while (1)
     {
 		UART_GetStrRcNl(UT0,str,20);
-	 
+		result=calculator(str);
+		if(error==1)
+		{
+		  print("ERROR");
+		}
+		else
+		{
+			if(isFloat(result)==1)
+			{
+
+			}
+		}
+      
     }
 }

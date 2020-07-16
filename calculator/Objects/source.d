@@ -22,8 +22,8 @@
 .\objects\source.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\source.o: .\hal\lcdconfig.h
 .\objects\source.o: app\lcdapps.h
-.\objects\source.o: .\lib\bluetooth.h
-.\objects\source.o: .\mcal\uart.h
-.\objects\source.o: .\mcal\nvic.h
 .\objects\source.o: .\lib\calc.h
 .\objects\source.o: .\lib\array.h
+.\objects\source.o: .\mcal\uart.h
+.\objects\source.o: .\mcal\nvic.h
+.\objects\source.o: .\lib\bluetooth.h

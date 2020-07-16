@@ -11,7 +11,7 @@ int8_t class3[3] = { '<', '>', '\0' };
 int8_t class4[4] = { '&','^','|','\0' };
 typedef enum
 {
-    POWER,
+    POWER = '0',
     GREATER_THEN,
     LESS_THEN,
     GREATER_THEN_EQUAL,
@@ -81,23 +81,16 @@ void extractOpers(int8_t* str, int8_t* opers)
     numOpers = 0;
     while (str[count1] != '\0')
     {
-        if ((isContainCh(class0, str[count1]) == 1))
+        while ((isContainCh(class0, str[count1]) == 1))
         {
-            if (isUnaryMinus(str, count1) == 1)
-            {
-                opers[count2] = '$';
-                count2++;
-                digit = 0;
-            }
-            else {
-                opers[count2] = str[count1];
-                str[count1] = -2;
-                numOpers++;
-                count2++;
-                digit = 1;
-            }
+            opers[count2] = str[count1];
+            str[count1] = -1;
+            numOpers++;
+            count2++;
+            count1++;
+            digit = 1;
         }
-        else if ((isContainCh(class1, str[count1]) == 1)
+        if ((isContainCh(class1, str[count1]) == 1)
             || (isContainCh(class2, str[count1]) == 1))
         {
             if (isUnaryMinus(str, count1) == 1)
@@ -108,8 +101,16 @@ void extractOpers(int8_t* str, int8_t* opers)
             }
             else
             {
-                opers[count2] = str[count1];
-                str[count1] = -1;
+                if (str[count1] == '*' && str[count1 + 1] == '*')
+                {
+                    opers[count2] = POWER;
+                    delChar(str, count1 + 1);
+                }
+                else
+                {
+                    opers[count2] = str[count1];
+                }
+                str[count1] = -2;
                 numOpers++;
                 count2++;
                 digit = 1;
@@ -121,7 +122,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             if (str[count1] == '>')opers[count2] = SHRIGHT;
             else if (str[count1] == '<')opers[count2] = SHLEFT;
 
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -132,7 +133,7 @@ void extractOpers(int8_t* str, int8_t* opers)
         {
             if (str[count1] == '>')opers[count2] = GREATER_THEN_EQUAL;
             else if (str[count1] == '<')opers[count2] = LESS_THEN_EQUAL;
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -144,7 +145,7 @@ void extractOpers(int8_t* str, int8_t* opers)
         {
             if (str[count1] == '>')opers[count2] = GREATER_THEN;
             else if (str[count1] == '<')opers[count2] = LESS_THEN;
-            str[count1] = -1;
+            str[count1] = -2;
             numOpers++;
             digit = 1;
             count2++;
@@ -153,7 +154,7 @@ void extractOpers(int8_t* str, int8_t* opers)
 
         {
             opers[count2] = EQUALITY;
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -163,7 +164,7 @@ void extractOpers(int8_t* str, int8_t* opers)
 
         {
             opers[count2] = NOTEQUAL;
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -174,7 +175,7 @@ void extractOpers(int8_t* str, int8_t* opers)
 
         {
             opers[count2] = LOGICAND;
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -184,7 +185,7 @@ void extractOpers(int8_t* str, int8_t* opers)
 
         {
             opers[count2] = LOGICOR;
-            str[count1] = -1;
+            str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
@@ -193,89 +194,42 @@ void extractOpers(int8_t* str, int8_t* opers)
         else  if (isContainCh(class4, str[count1]) == 1)
         {
             opers[count2] = str[count1];
-            str[count1] = -1;
+            str[count1] = -2;
             numOpers++;
             digit = 1;
             count2++;
         }
-        else if (digit == 1) {
-            opers[count2] = '$';
-            count2++;
-            digit = 0;
+        if (digit == 1) {
+            if (isContainCh(class0, str[count1+1]) == 1)
+            {
+                digit = 0;
+            }
+            else
+            {
+                opers[count2] = '$';
+                count2++;
+                digit = 0;
+            }
+
         }
         count1++;
     }
     opers[count2] = '\0';
-}
-
-void extractNums(int8_t* str, int32_t* nums, int8_t* opers)
-{
-    int8_t count = 0;//points to next int8_tin string
-    int8_t nextNum = 0;//points to next num
-    int8_t index = 0;//index to the place to hold number
-    int8_t nPers = numOpers;//to store number of operators
-    int8_t notoper = 0;
-    while (str[count] != '\0')//loop all chars except nul
-    {
-        if ((str[count] == -2)) //it is logical not operator '!' or betwise not  
-        {
-            nextNum = count + 1;//get the number after ! operator,nextNum points to next number, 
-            count++;//skip that operator
-            nPers--;//decrease number of operators
-        }
-        if (str[0] == -1) { //this means work in the previous result
-            nextNum = count + 1;//get the number after ! operator,nextNum points to next number, 
-            count++;//skip that operator
-            nPers--;//decrease number of operators
-        }
-        if ((str[count] == -1))//it may be any operator except not
-        {
-            str[count] = '\0'; //replace operator with null
-            while (opers[index] != '$')//loop until find '$' which means it is a valid index to store number
-            {
-                nums[index] = 0;//fill invalid places with zeros,
-                index++;//increment counter
-            }
-            nums[index] = strToInt(str + nextNum);//store the number 
-            nextNum = count + 1;//get the number after operator,nextNum points to next number 
-            index++;//increment counter 3 to get a new place to hold the new number
-            nPers--;//decrease number of operators
-        }
-        /*store the last number*/
-        if (nPers == 0)//if numbr of operators is 0
-        {
-            while (opers[index] != '$')//loop until find '$' which means it is a valid index to store number
-            {
-                nums[index] = 0; //fill invalid places with zeros,
-                index++; //increment counter
-            }
-            nums[index] = strToInt(str + nextNum);//store the last number
-            break;//stop looping
-        }
-        count++;//increment counter
-    }
 }
 void extractFnums(int8_t* str, double* Fnums, int8_t* opers) {
     int8_t count = 0;//points to next int8_tin string
     int8_t nextNum = 0;//points to next num
     int8_t index = 0;//index to the place to hold number
     int8_t nPers = numOpers;//to store number of operators
-    int8_t notoper = 0;
     while (str[count] != '\0')//loop all chars except nul
     {
-        if ((str[count] == -2)) //it is logical not operator '!' or betwise not  
+        if ((str[count] == -1)) //it is logical not operator '!' or betwise not  
         {
             nextNum = count + 1;//get the number after ! operator,nextNum points to next number, 
             count++;//skip that operator
             nPers--;//decrease number of operators
         }
-        if (str[0] == -1) { //this means work in the previous result
-            nextNum = count + 1;//get the number after ! operator,nextNum points to next number, 
-            count++;//skip that operator
-            nPers--;//decrease number of operators
-        }
-
-        if ((str[count] == -1))//it may be any operator except logical not or betwise not
+        if ((str[count] == -2))//it may be any operator except logical not or betwise not
         {
             str[count] = '\0'; //replace operator with null
             while (opers[index] != '$')//loop until find '$' which means it is a valid index to store number
@@ -348,6 +302,20 @@ double strCalc(double* nums, int8_t* opers)
                 c1 = strLen(opers) - 1;
             }
 
+        }
+    }
+    for (c1 = 0; c1 < strLen(opers); c1++)
+    {
+        if (opers[c1] == POWER)
+        {
+            result = getPower(nums[c1 - 1], nums[c1 + 1]);
+            nums[c1 - 1] = result;
+            delChar(opers, c1 + 1);
+            delChar(opers, c1);
+            delDoubleElement(nums, c1 + 1, len);
+            delDoubleElement(nums, c1, len);
+            len -= 2;
+            c1 = 0;
         }
     }
     for (c1 = 0; c1 < strLen(opers); c1++)
@@ -668,7 +636,7 @@ uint8_t strRules(int8_t* str)
     }
     return result;
 }
-uint8_t handleParenthesis(int8_t* str)
+void handleParenthesis(int8_t* str)
 {
     double fnums[20];
     int8_t opers[20];
@@ -679,7 +647,7 @@ uint8_t handleParenthesis(int8_t* str)
     int8_t p[20];
     int count2 = 0;
     int8_t count = 0;
-	uint8_t valid;
+    uint8_t valid = 1;
     while (isContainCh(str, '(') == 1) {
         firstBraceIndx = charSearch(str, '(');
         if (isContainCh(str + firstBraceIndx + 1, ')'))
@@ -710,43 +678,39 @@ uint8_t handleParenthesis(int8_t* str)
                 count2++;
             }
         }
+        else
+        {
+            error = 1;
+        }
     }
-	return valid ;
 }
-uint8_t handleAns(int8_t* str,double prevResult,uint8_t prev)
+uint8_t handleAns(int8_t* str, double prevResult, uint8_t prev)
 {
+    return 1;
 }
-void removeSpaces(int8_t* str)
-{
-}
- double typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
+void typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
 {
     int8_t index;//index of the first str in string 
-    uint8_t result = 0; //by default it hasn't hex string
     if ((strIsContain(str, "hex") == 1) && (strLen(str) == 3) && prev == 1)
     {
         delStr(str, "hex"); //delete "ans" to be replaced by the previous result but in hex
-        result = 1;
+        hex = 1;
     }
     if (strIsContain(str, "hex("))
     {
-        if (strIsContain(str, ")") && (str[charSearch(str,')') + 1] == '\0'))
+        if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
         {
-		    handleParenthesis(str);
+            handleParenthesis(str);
             delStr(str, "hex"); //delete "hex" to be replaced by the previous result but in hex
-           // str[charSearch(str, ')')] = '\0';
             *preValue = strToFloat(str);
-			prev=1;
-            result = 1;
+            prev = 1;
+            hex = 1;
         }
         else
         {
             error = 1;
-            result = 0;
         }
     }
-    return result;    //retrun 1 : function has evaluated all ans 
-                    //return 0: function can't evaluate str
 }
 double calculator(int8_t* str)
 {
@@ -754,31 +718,19 @@ double calculator(int8_t* str)
     double nums[20];//is used to store numbers after extracting them from str
     double result;
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result
-    removeSpaces(str);//remove all spaces in stirng 
-    if (typeConverstionandle(str, nums, prev) == 1)
+    remStrSpace(str);//remove all spaces in stirng 
+    typeConverstionandle(str, nums, prev);
+    handleParenthesis(str);
+    handleAns(str, nums[0], prev);
+    if (strRules(str) == 1)
     {
-		hex=1;
-		result=nums[0];
+        extractOpers(str, opers);
+        extractFnums(str, nums, opers);
+        result = strCalc(nums, opers);
+        prev = 1;
     }
-    else if(error==0)
-    {
-        if (handleParenthesis(str) == 1 && handleAns(str, nums[0], prev) == 1)
-        {
-            if (strRules(str) == 1)
-            {
-                extractOpers(str, opers);
-                extractFnums(str, nums, opers);
-                result = strCalc(nums, opers);
-                prev = 1;
-            }
-            else {
-                error = 1;
-            }
-        }
-        else {
-            error = 1;
-        }
+    else {
+        error = 1;
     }
-
     return result;
 }
