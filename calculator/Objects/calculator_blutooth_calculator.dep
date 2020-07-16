@@ -24,7 +24,7 @@ I (.\hal\rgb.h)(0x5F0E5BA3)
 I (.\mcal\systick.h)(0x5F0E94FA)
 F (.\app\app.h)(0x5F0EA167)()
 F (.\app\lcdapps.h)(0x5F0E94FA)()
-F (.\app\source.c)(0x5F0FBBE2)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\source.o --omf_browse .\objects\source.crf --depend .\objects\source.d)
+F (.\app\source.c)(0x5F0FBC54)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\source.o --omf_browse .\objects\source.crf --depend .\objects\source.d)
 I (app\app.h)(0x5F0EA167)
 I (.\mcal\tm4c123io.h)(0x5F0E97AD)
 I (.\lib\stdint.h)(0x5F0EB32B)
@@ -124,7 +124,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123
 F (.\lib\math.h)(0x5F0E95AF)()
 F (.\lib\New Text Document.txt)(0x5F0E9BC8)()
 F (.\lib\stdint.h)(0x5F0EB32B)()
-F (.\lib\strfuncs.c)(0x5F0FBAB8)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\strfuncs.o --omf_browse .\objects\strfuncs.crf --depend .\objects\strfuncs.d)
+F (.\lib\strfuncs.c)(0x5F0FBDDC)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\strfuncs.o --omf_browse .\objects\strfuncs.crf --depend .\objects\strfuncs.d)
 I (lib\strfuncs.h)(0x5F0FAE44)
 I (lib\stdint.h)(0x5F0EB32B)
 I (lib\math.h)(0x5F0E95AF)

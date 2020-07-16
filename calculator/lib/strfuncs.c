@@ -248,7 +248,7 @@ double strToFloat(int8_t* str)
     {
         num *= -1; //to be a negative number
     }
-    return num; //return integer number
+    return num; //return double number
 }
 
 
@@ -264,21 +264,21 @@ void insertChar(int8_t* str, int8_t ch, int8_t index)
     }
     str[count] = ch;//insert character in the required position
 }
-//this function returns 1 if int8_tis in string & return 0 if not
+//this function returns 1 if char is in string & return 0 if not
 int8_t isContainCh(int8_t* str, int8_t ch)
 {
     int8_t count = 0;//is user as counter
-    int8_t result = 0;
-    while (str[count] != '\0')
+    int8_t result = 0;//result=1 means char is in string , result=0 means char is not in string 
+    while (str[count] != '\0') //loop all chars except null
     {
-        if (str[count] == ch)
+        if (str[count] == ch) //if char in string is equal to ch
         {
-            result = 1;
-            break;
+            result = 1;   //return character is in string 
+            break;    //stop looping
         }
-        count++;
+        count++;    //increment counter
     }
-    return result;
+    return result;   //return the result
 }
 /* delete int8_tfrom string */
 void  delChar(int8_t* str, int8_t index) {
@@ -489,9 +489,9 @@ int8_t* intToStr(int32_t num)
     {
         if (num < 0) //in case it is negative number 
         {          
-            num = num * -1;//div initially stores ipart
-            str[count++] = '-';
-            neg = 1;
+            num = num * -1;//convert negative number to positivee
+            str[count++] = '-';  //store negative sign character
+            neg = 1;   //it is negative number 
         }
         div = num;//div initially stores ipart
         while (div)  //loop until div becomes 0
@@ -540,9 +540,9 @@ int8_t* floatToStr(double num, uint8_t precision)
     {
         if (num < 0) //in case it is negative number 
         {
-            num = num * -1;//div initially stores ipart
-            str[count++] = '-';
-            neg = 1;
+            num = num * -1;//vonvert negative number to positive
+            str[count++] = '-'; //store the negative sign  char
+            neg = 1;   //it is negative numer 
         }
         ipart = (int32_t)num; //get the integer part of number 
         fpart = num - ipart;//get the float part of number		

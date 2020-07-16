@@ -31,9 +31,21 @@ compiling source.c...
 app\source.c(44): warning:  #177-D: variable "result"  was declared but never referenced
       double result;
 app\source.c: 1 warning, 0 errors
+compiling strfuncs.c...
+lib\strfuncs.c(78): warning:  #68-D: integer conversion resulted in a change of sign
+           result =-1;  //return -1 means str2 is greater
+lib\strfuncs.c(96): warning:  #68-D: integer conversion resulted in a change of sign
+                                     result=-1;   //return -1 means str2 is greater
+lib\strfuncs.c(475): warning:  #177-D: variable "ipart"  was declared but never referenced
+      int32_t ipart; //get the integer part of number 
+lib\strfuncs.c(479): warning:  #177-D: variable "mul"  was declared but never referenced
+      double mul;    //is used for multiplication between 16 and float part
+lib\strfuncs.c(580): warning:  #1-D: last line of file ends without a newline
+  }
+lib\strfuncs.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=27952 RO-data=652 RW-data=32 ZI-data=688  
-".\Objects\calculator_blutooth.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=27584 RO-data=652 RW-data=32 ZI-data=608  
+".\Objects\calculator_blutooth.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,7 +74,7 @@ Package Vendor: Keil
       Source file:   Device\Source\system_TM4C123.c
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:09
 </pre>
 </body>
 </html>
