@@ -14,6 +14,12 @@ uint8_t strLenTerm(int8_t* str,int8_t term);
 void strCopy(int8_t* str1, int8_t* str2);
 //convert string to integer value
 int32_t strToInt(int8_t* str);
+/*
+compare between two strings str1 & str2
+if they are matched return 0
+if str1>str2  return  1
+if str1<str2  return  -1
+*/
 int8_t strCmp(int8_t* str1, int8_t* str2);
 /*check if two strings are matched*/
 int8_t strIsContain(int8_t* str1, int8_t* str2);
@@ -25,14 +31,19 @@ int8_t isStrOfDigits(int8_t* str);
 int8_t charSearch(int8_t* str, int8_t ch);
 /* convert string to float*/
 double strToFloat(int8_t* str);
-/*insert new int8_tin string */
+
+/*insert new char into string */
 void insertChar(int8_t* str, int8_t ch, int8_t index);
-/* delete int8_tfrom string */
+
+/* delete char from string */
 void  delChar(int8_t* str, int8_t index);
+
 /*check if two strings are matched*/
 int8_t strIsContain(int8_t* str1, int8_t* str2) ; 
+
 /*get the index of str2 in str1*/
 uint8_t getStrIndex(int8_t* str1, int8_t* str2) ;
+
 /*delete str1 from str2*/
 void delStr(int8_t* str1,int8_t*str2) ;
 
@@ -47,6 +58,9 @@ int8_t* convDoubleToHexStr(double num,uint8_t precision);
 
 //convert double number to binary and store the result in string 
 int8_t* convDoubleToBinStr(double num, uint8_t precision);
+
+/*remove all spaces in string */
+void remStrSpace(int8_t*str) ;
 #endif
 
 

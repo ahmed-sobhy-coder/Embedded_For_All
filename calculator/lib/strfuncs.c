@@ -578,3 +578,53 @@ int8_t* floatToStr(double num, uint8_t precision)
     }
     return str; //return string 
 }
+/*remove all spaces in string */
+void remStrSpace(int8_t*str)
+{
+   uint8_t count=0; //is used as counter
+   while(str[count]!='\0')   //loop all chars except null
+   {
+       if(str[count]==' ') //if str char is space
+	   {
+	      delChar(str,count);  //remoove space character
+	   }
+	   count++;  //increment counter
+   }
+}
+ /*cout number of str2 in str1*/
+int8_t strCountNoStr(int8_t* str1, int8_t* str2)
+{
+    uint32_t str_len1 = strLen(str1);  //store string length of the first string
+    uint32_t str_len2 = strLen(str2);  //the length of second string
+    uint32_t index = 0, matched = 0;  //default values for counters
+    uint8_t nomatches=0;
+	if (str_len1 >= str_len2)
+    {
+        while (str1[index] != '\0')
+        {  //str_len1 must be greater than str_len2 to continue loop
+            if (str1[index] == str2[matched]) //if the chars matched of str1&str2
+            {
+                matched++;  //increase the matching chars counter
+                if (matched == str_len2)  //if str1 & str2 matched
+                {
+                    nomatches++;  //  how many times str2 is in str1
+					matched=0;  //reset the matching counter
+                }
+            }
+            else
+            {
+                matched = 0; //reset the the matching counter
+            }
+            index++; //increase the index counter, which points to the next char
+        }
+    }
+    else
+    {
+
+    }
+
+    return nomatches;    //return how many times str2 is in str1
+}
+
+
+

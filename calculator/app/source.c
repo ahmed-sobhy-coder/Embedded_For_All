@@ -46,6 +46,6 @@ int main(void)
     while (1)
     {
 		UART_GetStrRcNl(UT0,str,20);
-	 
+      
     }
 }

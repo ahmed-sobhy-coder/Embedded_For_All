@@ -58,6 +58,14 @@ int8_t* convDoubleToHexStr(double num,uint8_t precision);
 
 //convert double number to binary and store the result in string 
 int8_t* convDoubleToBinStr(double num, uint8_t precision);
+
+/*remove all spaces in string */
+void remStrSpace(int8_t*str) ;
+
+/*cout number of str2 in str1*/
+int8_t strCountNoStr(int8_t* str1, int8_t* str2) ;
+
+
 #endif
 
 
