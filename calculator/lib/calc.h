@@ -20,6 +20,12 @@ typedef enum
     LOGICAND,           //&&
     LOGICOR,            //||
 } calc;
+typedef enum
+{
+    BRACES_ERROR, //there is error in braces
+    OPER_ERROR,   //there is error in operators
+    NO_ERROR,     //there is no error
+} ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 void handleParenthesis(int8_t* str)  ;
 

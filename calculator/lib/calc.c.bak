@@ -1,20 +1,16 @@
 #include "calc.h"
-int8_t numOpers = 0;
-uint8_t error;
-uint8_t hex;
-uint8_t bin;
-uint8_t dec;
 static int8_t class0[5] = { '!', '~','-','+','\0' }; // unary operators
 static int8_t class1[4] = { '*', '/', '%', '\0' };  //  arithmetic operatos
 static int8_t class2[3] = { '+', '-', '\0' };//arithmetic operators
 static int8_t class3[3] = { '<', '>', '\0' }; //logical operatos
 static int8_t class4[4] = { '&','^','|','\0' };//bitwise operators
-typedef enum
-{
-    BRACES_ERROR,
-    OPER_ERROR,
-    NO_ERROR,
-} ERROR_TYPE;
+
+uint8_t numOpers = 0;
+uint8_t error;
+uint8_t hex;
+uint8_t bin;
+uint8_t dec;
+
 calc OPER;
 ERROR_TYPE ER;
 
@@ -62,63 +58,75 @@ uint8_t isDigitChar(int8_t ch)
     return result; //reuturn result
 }
 /*
-optimize expression 
+optimize expression
 for ex: ++4 str will be 4
     ex: -+4 str will be -4
 */
 void strOptimize(int8_t* str)
 {
-   uint8_t count=0;    //is used as a counter
-   while(str[count]!='\0')  //loop all chars except null
-   {                                             
-	   if(str[count]=='+'&&str[count+1]=='+'&&count==0)  /* in case of ++ */
-	   {
-			  delChar(str,count+1);/*delete '+' opertor*/
-			  delChar(str,count); /*delete '+' opertor*/
-			  count=0;
-			  continue;     //skip current loop
-	   }
-	   if(str[count]=='+'&&str[count+1]=='-'&&count==0)  /* in case of +- */
-	   {
-			  delChar(str,count);  /*delete '+' opertor*/
-			  count=0;
-			  continue;     //skip current loop
-	   }
-	   if(str[count]=='-'&&str[count+1]=='+'&&count==0) /* in case of -+ */
-	   {
-			  delChar(str,count+1);   /*delete '+' opertor*/
-			  count=0;
-			  continue;     //skip current loop
-	   }
-	   	if(str[count]=='-'&&str[count+1]=='-')   /* in case of -- */
-	   {
-			  str[count]='+';     /*replace the first '+' with '-'*/
-			  delChar(str,count+1);   /*delete the second '+' opertor*/
-			  count=0;
-			  continue;    //skip current loop
-	   }
-	   if(str[count]=='!'&&str[count+1]=='!')    /* in case of !! */
-	   {
-			  delChar(str,count+1); /*delete '!' opertor*/
-			  delChar(str,count);     /*delete '!' opertor*/
-			  count=0;
-			  continue;    //skip current loop
-	   }
-	   if(str[count]=='~'&&str[count+1]=='~')  /* in case of ~~ */
-	   {
-			  delChar(str,count+1);    /*delete '~' opertor*/
-			  delChar(str,count);      /*delete '~' opertor*/
-			  count=0;
-			  continue;    //skip current loop
-	   }
-	   if(str[count]=='+'&&count==0) /* in case of + is in the first index */
-	   {
-			  delChar(str,count);   /*delete '+' opertor*/
-			  count=0;
-			  continue;    //skip current loop
-	   }	   
-	   count++; //increment counter
-   }
+    uint8_t count = 0;    //is used as a counter
+    while (str[count] != '\0')  //loop all chars except null
+    {
+        if (str[count] == '+' && str[count + 1] == '+' && count == 0)  /* in case of ++ */
+        {
+            delChar(str, count + 1);/*delete '+' opertor*/
+            delChar(str, count); /*delete '+' opertor*/
+			count=0; //reset counter
+            continue;     //skip current loop
+        }
+        else if (str[count] == '+' && str[count + 1] == '+')  /* in case of ++ */
+        {
+            delChar(str, count + 1);/*delete '+' opertor*/
+		    count=0; //reset counter
+            continue;     //skip current loop
+        }
+        else if (str[count] == '+' && str[count + 1] == '-' && count == 0)  /* in case of +- */
+        {
+            delChar(str, count);  /*delete '+' opertor*/
+			count=0; //reset counter
+            continue;     //skip current loop
+        }
+        else if (str[count] == '-' && str[count + 1] == '+' && count == 0) /* in case of -+ */
+        {
+            delChar(str, count + 1);   /*delete '+' opertor*/
+			count=0; //reset counter
+            continue;     //skip current loop
+        }
+        else	if (str[count] == '-' && str[count + 1] == '-')   /* in case of -- */
+        {
+            str[count] = '+';     /*replace the first '+' with '-'*/
+            delChar(str, count + 1);   /*delete the second '+' opertor*/
+			count=0; //reset counter
+            continue;    //skip current loop
+        }
+        else if (str[count] == '!' && str[count + 1] == '!')    /* in case of !! */
+        {
+            delChar(str, count + 1); /*delete '!' opertor*/
+            delChar(str, count);     /*delete '!' opertor*/  
+			count=0; //reset counter
+            continue;    //skip current loop
+        }
+        else if (str[count] == '~' && str[count + 1] == '~')  /* in case of ~~ */
+        {
+            delChar(str, count + 1);    /*delete '~' opertor*/
+            delChar(str, count);      /*delete '~' opertor*/
+			count=0; //reset counter
+            continue;    //skip current loop
+        }
+        else if (str[count] == '+' && count == 0) /* in case of + is in the first index */
+        {
+            delChar(str, count);   /*delete '+' opertor*/
+			count=0; //reset counter
+            continue;    //skip current loop
+        }
+		else if(str[count] == '(' && str[count + 1] == '+')
+		{
+		    delChar(str, count);   /*delete '+' opertor*/
+		    count=0; //reset counter
+            continue;    //skip current loop
+		}
+        count++; //increment counter
+    }
 }
 void extractOpers(int8_t* str, int8_t* opers)
 {
@@ -127,23 +135,25 @@ void extractOpers(int8_t* str, int8_t* opers)
     int8_t digit = 1;//flag to indicate that the next place if for digit not operator
                      //by default it it is 1 which means by default the next place if for digit  
     numOpers = 0;
-    while (str[count1] != '\0')
+    while (str[count1] != '\0')  //loop all chars except null
     {
-        if((strIsContainCh(class0, str[count1]) == 1) && isUnary(str, count1))  //if it is unary operator
+        if ((strIsContainCh(class0, str[count1]) == 1) && isUnary(str, count1))  //if it is unary operator
         {
-            if (str[count1] == '-')
+            if (str[count1] == '-')  //if it is unary '-'
             {
-                opers[count2] = '$';
-                count2++;
-                digit = 0;
-            }
+                opers[count2] = '$'; //$ in opers means this place is for number 
+                count2++;   //make counter2 poits to next place to place a new operator or $
+                digit = 0; //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                           //digit=1 means place $ in opers to indicate it is place for number           
+		   }
             else
             {
                 opers[count2] = str[count1];   //store operator
-                str[count1] = -1; //replace operator with -1, it is indicator to exctrac nums function that this place is for operator
+                str[count1] = -1; //replace operator with -1, it is indicator to exctractnums function that this place is for operator
                 numOpers++; //increase numbre of opers
-                count2++;  //make counter2 poits to next place to place a new char
-                digit = 1;//it is flag indicate the next char after operator is for number			
+                count2++;   //make counter2 poits to next place to place a new operator or $
+                digit = 1;//digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                           //digit=1 means place $ in opers to indicate it is place for number  			
             }
             count1++;  //get the next number 
         }
@@ -161,10 +171,11 @@ void extractOpers(int8_t* str, int8_t* opers)
             {
                 opers[count2] = str[count1];//in case it is ascii operator,store opertor in opers array
             }
-            str[count1] = -2;   //
-            numOpers++;
-            count2++;
-            digit = 1;
+            str[count1] = -2;  //replace operator with -2, it is indicator to exctractnums function that this place is for operator
+            numOpers++;  //increase number of operators
+            count2++;  //make counter2 poits to next place to place a new operator or $
+            digit = 1; //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                        //digit=1 means place $ in opers to indicate it is place for number  
         }
         else  if ((strIsContainCh(class3, str[count1]) == 1) && (strIsContainCh(class3, str[count1 + 1]) == 1))
 
@@ -174,21 +185,23 @@ void extractOpers(int8_t* str, int8_t* opers)
 
             str[count1] = -2;
             delChar(str, count1 + 1);
-            numOpers++;
-            digit = 1;
-            count2++;
+            numOpers++;             
+			count2++; //make counter2 poits to next place to place a new operator or $
+            digit = 1;  //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                           //digit=1 means place $ in opers to indicate it is place for number  
         }
-        else  if ((strIsContainCh(class3, str[count1]) == 1) && 
-		          (str[count1 + 1] == '='))
+        else  if ((strIsContainCh(class3, str[count1]) == 1) &&
+            (str[count1 + 1] == '='))
 
         {
             if (str[count1] == '>')opers[count2] = GREATER_THEN_EQUAL;
             else if (str[count1] == '<')opers[count2] = LESS_THEN_EQUAL;
             str[count1] = -2;
             delChar(str, count1 + 1);
-            numOpers++;
-            digit = 1;
-            count2++;
+            numOpers++;            
+			count2++;   //make counter2 poits to next place to place a new operator or $
+            digit = 1; //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                        //digit=1 means place $ in opers to indicate it is place for number  
         }
 
         else  if (strIsContainCh(class3, str[count1]) == 1)
@@ -197,9 +210,11 @@ void extractOpers(int8_t* str, int8_t* opers)
             if (str[count1] == '>')opers[count2] = GREATER_THEN;
             else if (str[count1] == '<')opers[count2] = LESS_THEN;
             str[count1] = -2;
-            numOpers++;
-            digit = 1;
-            count2++;
+            numOpers++; 
+			count2++;
+            digit = 1; //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                       //digit=1 means place $ in opers to indicate it is place for number  
+            
         }
         else  if ((str[count1] == '=') && ((str[count1 + 1] == '=')))
 
@@ -208,8 +223,10 @@ void extractOpers(int8_t* str, int8_t* opers)
             str[count1] = -2;
             delChar(str, count1 + 1);
             numOpers++;
-            digit = 1;
-            count2++;
+            count2++;              
+			digit = 1;//digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                      //digit=1 means place $ in opers to indicate it is place for number  
+
         }
         else  if ((str[count1] == '!') && ((str[count1 + 1] == '=')))
 
@@ -217,9 +234,10 @@ void extractOpers(int8_t* str, int8_t* opers)
             opers[count2] = NOTEQUAL;
             str[count1] = -2;
             delChar(str, count1 + 1);
-            numOpers++;
-            digit = 1;
-            count2++;
+            numOpers++;              
+			count2++;   //make counter2 poits to next place to place a new operator or $
+            digit = 1;    //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                           //digit=1 means place $ in opers to indicate it is place for number  
         }
 
         else  if ((str[count1] == '&') && ((str[count1 + 1] == '&')))
@@ -240,7 +258,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             delChar(str, count1 + 1);
             numOpers++;
             digit = 1;
-            count2++;
+            count2++;//make counter2 poits to next place to place a new char
         }
         else  if (strIsContainCh(class4, str[count1]) == 1)
         {
@@ -251,14 +269,14 @@ void extractOpers(int8_t* str, int8_t* opers)
             count2++;
         }
         if (digit == 1) {
-           if (str[count1+1]=='!'||str[count1+1]=='~')
+            if (str[count1 + 1] == '!' || str[count1 + 1] == '~')
             {
                 digit = 0;
             }
-            else 
+            else
             {
                 opers[count2] = '$';
-                count2++;
+                count2++; //make counter2 poits to next place to place a new operator or $
                 digit = 0;
             }
         }
@@ -702,6 +720,7 @@ void handleParenthesis(int8_t* str)
             str[SecondBraceIndx] = '\0';
             extractOpers(str + firstBraceIndx + 1, opers);
             extractFnums(str + firstBraceIndx + 1, fnums, opers);
+			//strOptimize(str+firstBraceIndx);
             result = strCalc(fnums, opers);
             ptr = floatToStr(result, 3);
             count = firstBraceIndx;
@@ -779,11 +798,11 @@ double calculator(int8_t* str)
 {
     int8_t opers[20];//is used to store operators after extracting them from str
     static double nums[20];//is used to store numbers after extracting them from str
-    
-	double result;
+
+    double result;
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result
     remStrSpace(str);//remove all spaces in stirng 
-	strOptimize(str);
+    strOptimize(str);
     typeConverstionandle(str, nums, prev);
     handleParenthesis(str);
     handleAns(str, nums, prev);

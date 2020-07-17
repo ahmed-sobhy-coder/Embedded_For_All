@@ -20,11 +20,17 @@ typedef enum
     LOGICAND,           //&&
     LOGICOR,            //||
 } calc;
+typedef enum
+{
+    BRACES_ERROR, //there is error in braces
+    OPER_ERROR,   //there is error in operators
+    NO_ERROR,     //there is
+} ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 void handleParenthesis(int8_t* str)  ;
 
 /*   string calculator function */
-double strCalc(int8_t*str, double* nums, int8_t* opers);
+double strCalc(double* nums, int8_t* opers);
 /* define rules for calculator in order to detect errors*/
 uint8_t rules(int8_t* str);
 /*check if the num is int or double */
