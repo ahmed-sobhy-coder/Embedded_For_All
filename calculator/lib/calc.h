@@ -5,6 +5,21 @@
 #include "strFuncs.h"
 #include "array.h"
 #include "uart.h"
+/* even operators like >= or <= or ==*/
+typedef enum
+{
+    POWER = '0',        //** 
+    GREATER_THEN,       //>
+    LESS_THEN,          //<
+    GREATER_THEN_EQUAL, //>=
+    LESS_THEN_EQUAL,    //<=
+    EQUALITY,           //==
+    NOTEQUAL,           //!=
+    SHLEFT,             //<<
+    SHRIGHT,            //>>
+    LOGICAND,           //&&
+    LOGICOR,            //||
+} calc;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 void handleParenthesis(int8_t* str)  ;
 

@@ -265,7 +265,7 @@ void insertChar(int8_t* str, int8_t ch, int8_t index)
     str[count] = ch;//insert character in the required position
 }
 //this function returns 1 if char is in string & return 0 if not
-int8_t isContainCh(int8_t* str, int8_t ch)
+int8_t strisContainCh(int8_t* str, int8_t ch)
 {
     int8_t count = 0;//is user as counter
     int8_t result = 0;//result=1 means char is in string , result=0 means char is not in string 
@@ -345,7 +345,7 @@ void delStr(int8_t* str1, int8_t* str2)
 void insertStr(int8_t* str1, int8_t* str2, uint32_t index)
 {
     uint32_t count = 0;  //is used as a counter for chars
-    uint32_t nochars = strLen(str1) - 1;
+    uint32_t nochars = strLen(str1);
     if (index <= nochars)  //check if str1 has that index
     {
         while (str2[count] != '\0')//loop all chars in str2 except null
