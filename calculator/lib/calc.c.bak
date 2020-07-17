@@ -51,6 +51,75 @@ int8_t isUnary(int8_t* str, int8_t index) {//check if '-' is minus or sub operat
     }
     return result; //return the result
 }
+/* check if the given char is digit*/
+uint8_t isDigitChar(int8_t ch)
+{
+    uint8_t result = 0;   //result 0 means by it is not digit char, 1 it is digit char
+    if ((ch >= '0') && (ch <= '9')) //if ch is bewteen 0 and 9
+    {
+        result = 1; //it is digit
+    }
+    return result; //reuturn result
+}
+/*
+optimize expression 
+for ex: ++4 str will be 4
+    ex: -+4 str will be -4
+*/
+void strOptimize(int8_t* str)
+{
+   uint8_t count=0;    //is used as a counter
+   while(str[count]!='\0')  //loop all chars except null
+   {                                             
+	   if(str[count]=='+'&&str[count+1]=='+'&&count==0)  /* in case of ++ */
+	   {
+			  delChar(str,count+1);/*delete '+' opertor*/
+			  delChar(str,count); /*delete '+' opertor*/
+			  count=0;
+			  continue;     //skip current loop
+	   }
+	   if(str[count]=='+'&&str[count+1]=='-'&&count==0)  /* in case of +- */
+	   {
+			  delChar(str,count);  /*delete '+' opertor*/
+			  count=0;
+			  continue;     //skip current loop
+	   }
+	   if(str[count]=='-'&&str[count+1]=='+'&&count==0) /* in case of -+ */
+	   {
+			  delChar(str,count+1);   /*delete '+' opertor*/
+			  count=0;
+			  continue;     //skip current loop
+	   }
+	   	if(str[count]=='-'&&str[count+1]=='-')   /* in case of -- */
+	   {
+			  str[count]='+';     /*replace the first '+' with '-'*/
+			  delChar(str,count+1);   /*delete the second '+' opertor*/
+			  count=0;
+			  continue;    //skip current loop
+	   }
+	   if(str[count]=='!'&&str[count+1]=='!')    /* in case of !! */
+	   {
+			  delChar(str,count+1); /*delete '!' opertor*/
+			  delChar(str,count);     /*delete '!' opertor*/
+			  count=0;
+			  continue;    //skip current loop
+	   }
+	   if(str[count]=='~'&&str[count+1]=='~')  /* in case of ~~ */
+	   {
+			  delChar(str,count+1);    /*delete '~' opertor*/
+			  delChar(str,count);      /*delete '~' opertor*/
+			  count=0;
+			  continue;    //skip current loop
+	   }
+	   if(str[count]=='+'&&count==0) /* in case of + is in the first index */
+	   {
+			  delChar(str,count);   /*delete '+' opertor*/
+			  count=0;
+			  continue;    //skip current loop
+	   }	   
+	   count++; //increment counter
+   }
+}
 void extractOpers(int8_t* str, int8_t* opers)
 {
     int8_t count1 = 0;//is used a s counter for all chars in string
@@ -60,43 +129,42 @@ void extractOpers(int8_t* str, int8_t* opers)
     numOpers = 0;
     while (str[count1] != '\0')
     {
-        while ((strIsContainCh(class0, str[count1]) == 1) && isUnary(str, count1))  //if it is unary operator
+        if((strIsContainCh(class0, str[count1]) == 1) && isUnary(str, count1))  //if it is unary operator
         {
-            if(str[count1]=='-'||str[count1]=='+')
-			{
-                 opers[count2] = '$';
-                 count2++;
-                 digit = 0;			
-			}
-			else
-			{
-			opers[count2] = str[count1];   //store operator
-            str[count1] = -1; //replace operator with -1, it is indicator to exctrac nums function that this place is for operator
-            numOpers++; //increase numbre of opers
-            count2++;  //make counter2 poits to next place to place a new char
-            digit = 1;//it is flag indicate the next char after operator is for number			
-			}
-		   count1++;  //get the next number 
+            if (str[count1] == '-')
+            {
+                opers[count2] = '$';
+                count2++;
+                digit = 0;
+            }
+            else
+            {
+                opers[count2] = str[count1];   //store operator
+                str[count1] = -1; //replace operator with -1, it is indicator to exctrac nums function that this place is for operator
+                numOpers++; //increase numbre of opers
+                count2++;  //make counter2 poits to next place to place a new char
+                digit = 1;//it is flag indicate the next char after operator is for number			
+            }
+            count1++;  //get the next number 
         }
         if ((strIsContainCh(class1, str[count1]) == 1) ||     //in case it is * / % operator
             ((strIsContainCh(class2, str[count1]) == 1) &&    // in case it is + or -  operators
                 (isUnary(str, count1) == 0))  //it is not a unary operator
             )
         {
-            if (str[count1] == '*' && str[count1 + 1] == '*')
+            if (str[count1] == '*' && str[count1 + 1] == '*') // in case it is power operator
             {
-                opers[count2] = POWER;
-                delChar(str, count1 + 1);
+                opers[count2] = POWER; //store operator in opers array
+                delChar(str, count1 + 1); //delete only one* because there is no char **
             }
             else
             {
-                opers[count2] = str[count1];
+                opers[count2] = str[count1];//in case it is ascii operator,store opertor in opers array
             }
-            str[count1] = -2;
+            str[count1] = -2;   //
             numOpers++;
             count2++;
             digit = 1;
-            // }
         }
         else  if ((strIsContainCh(class3, str[count1]) == 1) && (strIsContainCh(class3, str[count1 + 1]) == 1))
 
@@ -110,7 +178,8 @@ void extractOpers(int8_t* str, int8_t* opers)
             digit = 1;
             count2++;
         }
-        else  if ((strIsContainCh(class3, str[count1]) == 1) && (str[count1 + 1] == '='))
+        else  if ((strIsContainCh(class3, str[count1]) == 1) && 
+		          (str[count1 + 1] == '='))
 
         {
             if (str[count1] == '>')opers[count2] = GREATER_THEN_EQUAL;
@@ -182,17 +251,16 @@ void extractOpers(int8_t* str, int8_t* opers)
             count2++;
         }
         if (digit == 1) {
-            if ((strIsContainCh(class0, str[count1+1])) == 1)
-              {
-                    digit = 0;
-                }
-                else if( str[count1+1])
-                {
-            opers[count2] = '$';
-            count2++;
-            digit = 0;
-            //}
-
+           if (str[count1+1]=='!'||str[count1+1]=='~')
+            {
+                digit = 0;
+            }
+            else 
+            {
+                opers[count2] = '$';
+                count2++;
+                digit = 0;
+            }
         }
         count1++;
     }
@@ -258,33 +326,33 @@ double strCalc(double* nums, int8_t* opers)
 
     for (c1 = strLen(opers) - 1; c1 >= 0; c1--)
     {
-            if (opers[c1] == '!')
+        if (opers[c1] == '!')
+        {
+            result = !nums[c1 + 1];
+            nums[c1] = result;
+            delChar(opers, c1);
+            delDoubleElement(nums, c1 + 1, len);
+            len -= 1;
+            c1 = strLen(opers) - 1;
+        }
+        if (opers[c1] == '~')
+        {
+            if (isFloat(nums[c1 + 1]) == 1)
             {
-                result = !nums[c1 + 1];
+                continue;
+            }
+            else
+            {
+                result = ~((int32_t)(nums[c1 + 1]));
                 nums[c1] = result;
-                delChar(opers, c1);
+                delChar(opers, c1 + 1);
                 delDoubleElement(nums, c1 + 1, len);
                 len -= 1;
                 c1 = strLen(opers) - 1;
             }
-            if (opers[c1] == '~')
-            {
-                if (isFloat(nums[c1 + 1]) == 1)
-                {
-                    continue;
-                }
-                else
-                {
-                    result = ~((int32_t)(nums[c1 + 1]));
-                    nums[c1] = result;
-                    delChar(opers, c1 + 1);
-                    delDoubleElement(nums, c1 + 1, len);
-                    len -= 1;
-                    c1 = strLen(opers) - 1;
-                }
 
-            }
         }
+    }
     for (c1 = 0; c1 < strLen(opers); c1++)
     {
         if (opers[c1] == POWER)
@@ -711,9 +779,11 @@ double calculator(int8_t* str)
 {
     int8_t opers[20];//is used to store operators after extracting them from str
     static double nums[20];//is used to store numbers after extracting them from str
-    double result;
+    
+	double result;
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result
     remStrSpace(str);//remove all spaces in stirng 
+	strOptimize(str);
     typeConverstionandle(str, nums, prev);
     handleParenthesis(str);
     handleAns(str, nums, prev);
