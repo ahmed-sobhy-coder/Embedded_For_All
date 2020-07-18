@@ -584,6 +584,7 @@ void remStrSpace(int8_t*str)
        if(str[count]==' ') //if str char is space
 	   {
 	      delChar(str,count);  //remoove space character
+		  count=0; //reinitalize counter to loop string from index 0 again 
 	   }
 	   count++;  //increment counter
    }

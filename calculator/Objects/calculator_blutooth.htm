@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\calculator_blutooth.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\calculator_blutooth.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Jul 18 07:34:27 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Jul 18 08:24:55 2020
 <BR><P>
 <H3>Maximum Stack Usage =        472 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1624,6 +1624,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strLen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;insertStr
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strRules
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;handleParenthesis
 </UL>
 
@@ -1726,7 +1727,7 @@ Global Symbols
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;convDoubleToBinStr
 </UL>
 
-<P><STRONG><a name="[af]"></a>remStrSpace</STRONG> (Thumb, 34 bytes, Stack size 12 bytes, strfuncs.o(i.remStrSpace))
+<P><STRONG><a name="[af]"></a>remStrSpace</STRONG> (Thumb, 36 bytes, Stack size 12 bytes, strfuncs.o(i.remStrSpace))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = remStrSpace &rArr; delChar
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delChar
@@ -1801,7 +1802,7 @@ Global Symbols
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_SendStrMid
 </UL>
 
-<P><STRONG><a name="[b1]"></a>strOptimize</STRONG> (Thumb, 330 bytes, Stack size 16 bytes, calc.o(i.strOptimize))
+<P><STRONG><a name="[b1]"></a>strOptimize</STRONG> (Thumb, 326 bytes, Stack size 16 bytes, calc.o(i.strOptimize))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = strOptimize &rArr; isOperator &rArr; strIsContainCh
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delChar
@@ -1810,11 +1811,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calculator
 </UL>
 
-<P><STRONG><a name="[b0]"></a>strRules</STRONG> (Thumb, 858 bytes, Stack size 16 bytes, calc.o(i.strRules))
+<P><STRONG><a name="[b0]"></a>strRules</STRONG> (Thumb, 974 bytes, Stack size 16 bytes, calc.o(i.strRules))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = strRules &rArr; strIsContain
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strIsContainCh
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strIsContain
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;insertChar
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;charSearch
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isOperator
 </UL>

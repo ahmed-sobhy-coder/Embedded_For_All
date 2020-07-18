@@ -80,13 +80,13 @@ void strOptimize(int8_t* str)
             count = 0; //reset counter
             continue;     //skip current loop
         }
-        else if (str[count] == '+' && str[count + 1] == '-' && count == 0)  /* in case of +- */
+        else if (str[count] == '+' && str[count + 1] == '-' )  /* in case of +- */
         {
             delChar(str, count);  /*delete '+' opertor*/
             count = 0; //reset counter
             continue;     //skip current loop
         }
-        else if (str[count] == '-' && str[count + 1] == '+' && count == 0) /* in case of -+ */
+        else if (str[count] == '-' && str[count + 1] == '+') /* in case of -+ */
         {
             delChar(str, count + 1);   /*delete '+' opertor*/
             count = 0; //reset counter
@@ -850,7 +850,7 @@ ERROR_TYPE strRules(int8_t* str)
 	{
 	  ER=CHAR_ERROR;
 	}
-	while(str[count]!='\0')
+	while(str[count+1]!='\0')
 	{
 	 if(((strIsContainCh(class0,str[count]))&& (strIsContainCh(class1,str[count+1])))||
 	    ((strIsContainCh(class0,str[count]))&& (strIsContainCh(class3,str[count+1])))||
@@ -877,7 +877,8 @@ ERROR_TYPE strRules(int8_t* str)
 		((strIsContainCh(class3,str[count]))&& (strIsContainCh(class4,str[count+1])))||	
 		((strIsContainCh(class4,str[count]))&& (strIsContainCh(class3,str[count+1])))||	
 		((strIsContainCh(class5,str[count]))&& (strIsContainCh(class3,str[count+1])))||
-		(strIsContainCh(class5,str[count]))
+	    (str[count]=='.'&&isOperator(str[count+1]))||
+		(str[count]=='=')
 		)
 		
 		{	
@@ -885,6 +886,10 @@ ERROR_TYPE strRules(int8_t* str)
 		  else if(str[count]=='>'&&str[count+1]=='>') ;
 		  else if(str[count]=='<'&&str[count+1]=='<') ;
  		  else if(str[count]=='!'&&str[count+1]=='=') ;
+ 		  else if(str[count]=='>'&&str[count-1]=='=') count++;	
+ 		  else if(str[count]=='<'&&str[count-1]=='=') count++;		  
+ 		  else if(str[count]=='='&&str[count+1]=='=') count++;
+		  else if(str[count]=='.'&& isOperator( str[count-1])) insertChar(str,'0',count-1)   ;
           else {
 		  ER =OPER_ERROR;
 		  break;
