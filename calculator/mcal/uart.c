@@ -1416,6 +1416,11 @@ void printTerm(int8_t* str)
 {
    Uart_SendStrRcNl(UT0,str);//print to terminal with RC NL
 }
+//get string from terminal 
+void getTerm(int8_t* str,uint32_t max)
+{
+   UART_GetStrRcNl(UT0,str,max);//get string from terminal
+}
 /*
 void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both){
 	switch (uartn) {

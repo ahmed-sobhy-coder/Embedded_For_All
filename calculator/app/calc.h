@@ -5,6 +5,7 @@
 #include "strFuncs.h"
 #include "array.h"
 #include "uart.h"
+#include "bluetooth.h"
 /* even operators like >= or <= or ==*/
 typedef enum
 {

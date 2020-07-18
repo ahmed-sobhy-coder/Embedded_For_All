@@ -26,4 +26,4 @@
 .\objects\source.o: .\lib\array.h
 .\objects\source.o: .\mcal\uart.h
 .\objects\source.o: .\mcal\nvic.h
-.\objects\source.o: .\lib\bluetooth.h
+.\objects\source.o: .\hal\bluetooth.h

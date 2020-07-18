@@ -19,3 +19,4 @@
 .\objects\calc.o: .\mcal\nvic.h
 .\objects\calc.o: .\hal\rgb.h
 .\objects\calc.o: .\mcal\systick.h
+.\objects\calc.o: .\hal\bluetooth.h

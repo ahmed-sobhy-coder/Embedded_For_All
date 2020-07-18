@@ -19,9 +19,14 @@ void HC05_init(uint8_t mode)
     }
     Uart_Init(UT3, &huart); //initialize uart3
 }
-//print to terminal and bluetooth 
-void print(int8_t* str)
+//print to bluetooth 
+void printBluetooth(int8_t* str)
 {
-	Uart_SendStrRcNl(UT0,str);   //print to terminal
-	Uart_SendStr(UT3,str);//print to bluetooth 
+	Uart_SendStrRcNl(UT3,str);//print to bluetooth 
 }
+//get from data bluetooth 
+void getBluetooth(int8_t* str,uint32_t max)
+{
+	UART_GetStrRcNl(UT3,str,max);//print to bluetooth 
+}
+

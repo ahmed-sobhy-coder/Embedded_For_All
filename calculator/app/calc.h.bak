@@ -24,7 +24,8 @@ typedef enum
 	BRACES_ERROR, //there is error in braces
     OPER_ERROR,   //there is error in operators
 	NO_PREV,      //there is no previous result
-	INVALID_CONVERSION
+	INVALID_CONVERSION,
+	CHAR_ERROR,
 } ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 /*handle all () in string */

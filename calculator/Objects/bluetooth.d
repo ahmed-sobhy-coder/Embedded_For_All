@@ -1,5 +1,5 @@
-.\objects\bluetooth.o: lib\bluetooth.c
-.\objects\bluetooth.o: lib\bluetooth.h
+.\objects\bluetooth.o: hal\bluetooth.c
+.\objects\bluetooth.o: hal\bluetooth.h
 .\objects\bluetooth.o: .\mcal\uart.h
 .\objects\bluetooth.o: .\lib\stdint.h
 .\objects\bluetooth.o: .\mcal\tm4c123io.h

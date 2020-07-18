@@ -98,4 +98,6 @@ void Uart_SendStrRcNl(uint8_t uartn, int8_t* str);//send string with '\r''\n'
 void UART_GetStrRcNl(uint8_t uartn, int8_t* str, uint32_t max);//get string has '\r''\n' in its chars
 //print to terminal and bluetooth 
 void printTerm(int8_t* str);
+//get string from terminal 
+void getTerm(int8_t* str,uint32_t max);
 #endif  

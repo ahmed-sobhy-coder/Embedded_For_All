@@ -10,4 +10,5 @@
 #include "lcdconfig.h"
 #include "lcdapps.h"
 #include "calc.h"
+#include "bluetooth.h"
 #endif

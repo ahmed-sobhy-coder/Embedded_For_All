@@ -90,7 +90,7 @@ void Uart_SendChar(uint8_t uartn, int8_t character) ;
 void Uart_SendStr(uint8_t uartn, int8_t* str) ;
 int8_t UART_GetChar(uint8_t uartn) ;
 void UART_GetStr(uint8_t uartn, int8_t* string, uint32_t max);
-void Uart_SendInt(uint8_t uartn,uint32_t num);
+void Uart_SendInt(uint8_t uartn,int32_t num);
 void Uart_SendFloat(uint32_t uartn,double float_num,uint8_t precision);
 void UART_Interrupt_Init(uint8_t uartn, uint32_t baudRate, uint8_t both);
 void UART_AT_Resp_Receive(uint8_t uartn, int8_t* string, uint32_t max);

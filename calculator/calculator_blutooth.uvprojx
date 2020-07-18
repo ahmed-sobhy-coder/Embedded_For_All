@@ -433,16 +433,6 @@
               <FilePath>.\lib\bit.h</FilePath>
             </File>
             <File>
-              <FileName>bluetooth.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lib\bluetooth.c</FilePath>
-            </File>
-            <File>
-              <FileName>bluetooth.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lib\bluetooth.h</FilePath>
-            </File>
-            <File>
               <FileName>math.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lib\math.c</FilePath>
@@ -531,6 +521,16 @@
               <FileName>gsm.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\hal\gsm.h</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hal\bluetooth.c</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\hal\bluetooth.h</FilePath>
             </File>
           </Files>
         </Group>

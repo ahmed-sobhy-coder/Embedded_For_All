@@ -1411,7 +1411,7 @@ void Uart_SendFloat(uint32_t uartn, double float_num, uint8_t precision)
 {
     Uart_SendStr(uartn, floatToStr(float_num, precision));
 }
-//print to terminal and bluetooth 
+//print to terminal 
 void printTerm(int8_t* str)
 {
    Uart_SendStrRcNl(UT0,str);//print to terminal with RC NL
