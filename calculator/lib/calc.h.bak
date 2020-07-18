@@ -20,13 +20,14 @@ typedef enum
 } calc;
 typedef enum
 {
-    BRACES_ERROR, //there is error in braces
-    OPER_ERROR,   //there is error in operators
     NO_ERROR,     //there is no error
+	BRACES_ERROR, //there is error in braces
+    OPER_ERROR,   //there is error in operators
+	NO_PREV,      //there is no previous result
 } ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 /*handle all () in string */
-uint8_t handleParenthesis(int8_t* str)  ;
+ERROR_TYPE handleParenthesis(int8_t* str)  ;
 
 /*   string calculator function */
 double strCalc(double* nums, int8_t* opers);
@@ -39,4 +40,9 @@ void extractFnums(int8_t* str, double* Fnums, int8_t* opers) ;
 /* extract operators from string*/
 void extractOpers(int8_t* str, int8_t* opers);
 double calculator(int8_t* str);
+ /* 
+  this function is used to do operations in the previous result
+  it simply remove ans string from expression and replaces it with the previous value
+*/
+ERROR_TYPE handleAns(int8_t* str, double* nums, uint8_t prev);
 #endif

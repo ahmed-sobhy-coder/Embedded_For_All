@@ -472,11 +472,9 @@ int8_t* convDoubleToBinStr(double num, uint8_t precision)
 }
 int8_t* intToStr(int32_t num)
 {
-    int32_t ipart; //get the integer part of number 
     uint8_t count = 0;//points to next location to store char
     uint32_t div, rem;//div is used to store the result of the division
     static int8_t str[20];  //str stores hexa number as characters
-    double mul;    //is used for multiplication between 16 and float part
     uint32_t count1 = 0; //is used as a counter for next char to be allocated after decimal point
     uint8_t neg = 0;
     if (num == 0)    //if integer number is 0

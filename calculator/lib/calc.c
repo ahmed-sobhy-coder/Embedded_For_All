@@ -12,8 +12,8 @@ uint8_t bin;
 uint8_t dec;
 
 calc OPER;
-ERROR_TYPE ER;
 
+ERROR_TYPE ER;
 uint8_t Size = 0;
 /*check if given character is operator*/
 int8_t isOperator(int8_t oper)
@@ -71,60 +71,60 @@ void strOptimize(int8_t* str)
         {
             delChar(str, count + 1);/*delete '+' opertor*/
             delChar(str, count); /*delete '+' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;     //skip current loop
         }
         else if (str[count] == '+' && str[count + 1] == '+')  /* in case of ++ */
         {
             delChar(str, count + 1);/*delete '+' opertor*/
-		    count=0; //reset counter
+            count = 0; //reset counter
             continue;     //skip current loop
         }
         else if (str[count] == '+' && str[count + 1] == '-' && count == 0)  /* in case of +- */
         {
             delChar(str, count);  /*delete '+' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;     //skip current loop
         }
         else if (str[count] == '-' && str[count + 1] == '+' && count == 0) /* in case of -+ */
         {
             delChar(str, count + 1);   /*delete '+' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;     //skip current loop
         }
         else	if (str[count] == '-' && str[count + 1] == '-')   /* in case of -- */
         {
             str[count] = '+';     /*replace the first '+' with '-'*/
             delChar(str, count + 1);   /*delete the second '+' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;    //skip current loop
         }
         else if (str[count] == '!' && str[count + 1] == '!')    /* in case of !! */
         {
             delChar(str, count + 1); /*delete '!' opertor*/
-            delChar(str, count);     /*delete '!' opertor*/  
-			count=0; //reset counter
+            delChar(str, count);     /*delete '!' opertor*/
+            count = 0; //reset counter
             continue;    //skip current loop
         }
         else if (str[count] == '~' && str[count + 1] == '~')  /* in case of ~~ */
         {
             delChar(str, count + 1);    /*delete '~' opertor*/
             delChar(str, count);      /*delete '~' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;    //skip current loop
         }
         else if (str[count] == '+' && count == 0) /* in case of + is in the first index */
         {
             delChar(str, count);   /*delete '+' opertor*/
-			count=0; //reset counter
+            count = 0; //reset counter
             continue;    //skip current loop
         }
-		else if(str[count] == '(' && str[count + 1] == '+')
-		{
-		    delChar(str, count+1);   /*delete '+' opertor*/
-		    count=0; //reset counter
+        else if (str[count] == '(' && str[count + 1] == '+')
+        {
+            delChar(str, count + 1);   /*delete '+' opertor*/
+            count = 0; //reset counter
             continue;    //skip current loop
-		}
+        }
         count++; //increment counter
     }
 }
@@ -134,7 +134,7 @@ void extractOpers(int8_t* str, int8_t* opers)
     int8_t count2 = 0;//is used as a counter
     int8_t digit = 1;//flag to indicate that the next place if for digit not operator
                      //by default it it is 1 which means by default the next place if for digit  
-					 //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
+                     //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number
                      //digit=1 means place $ in opers to indicate it is place for number  
     numOpers = 0;
     while (str[count1] != '\0')  //loop all chars except null
@@ -146,7 +146,7 @@ void extractOpers(int8_t* str, int8_t* opers)
                 opers[count2] = '$'; //$ in opers means this place is for number 
                 count2++;   //make counter2 poits to next place to place a new operator or $
                 digit = 0; //digit 0 means we have counted that number number and reserved it is place in opers and is waiting to next number                          
-		   }
+            }
             else       /* it may be ! or ~ */
             {
                 opers[count2] = str[count1];   //store operator
@@ -187,7 +187,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             str[count1] = -2;//replace operator with -2, it is indicator to exctractnums function that this place is for operator
             delChar(str, count1 + 1);  //delete > or <
             numOpers++;  //increase number of operators           
-			count2++; //make counter2 poits to next place to place a new operator or $
+            count2++; //make counter2 poits to next place to place a new operator or $
             digit = 1;      //digit=1 means place $ in opers to indicate it is place for number                    
         }
         else  if ((strIsContainCh(class3, str[count1]) == 1) &&  //in case >= or <= or ==
@@ -198,7 +198,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             str[count1] = -2;//replace operator with -2, it is indicator to exctractnums function that this place is for operator
             delChar(str, count1 + 1); //delete = operator
             numOpers++;    //increase number of operators         
-			count2++;   //make counter2 poits to next place to place a new operator or $
+            count2++;   //make counter2 poits to next place to place a new operator or $
             digit = 1;  //digit=1 means place $ in opers to indicate it is place for number         
         }
         else  if (strIsContainCh(class3, str[count1]) == 1)/* in case > < operators  */
@@ -207,7 +207,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             else if (str[count1] == '<')opers[count2] = str[count1];  //store operator in opers array
             str[count1] = -2; //replace operator with -2, it is indicator to exctractnums function that this place is for operator
             numOpers++;       //increase number of operators
-			count2++;  //make counter2 poits to next place to place a new operator or $
+            count2++;  //make counter2 poits to next place to place a new operator or $
             digit = 1;  //digit=1 means place $ in opers to indicate it is place for number    
         }
         else  if ((str[count1] == '=') && ((str[count1 + 1] == '=')))//in case == operator
@@ -217,7 +217,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             delChar(str, count1 + 1);  //delete = operator
             numOpers++;      //increase number of operators
             count2++;  //make counter2 poits to next place to place a new operator or $            
-			digit = 1;//digit=1 means place $ in opers to indicate it is place for number
+            digit = 1;//digit=1 means place $ in opers to indicate it is place for number
         }
         else  if ((str[count1] == '!') && ((str[count1 + 1] == '=')))//in case != operator
         {
@@ -225,7 +225,7 @@ void extractOpers(int8_t* str, int8_t* opers)
             str[count1] = -2; //replace operator with -2, it is indicator to exctractnums function that this place is for operator
             delChar(str, count1 + 1);  //delete = operator
             numOpers++;   //increase number of operators            
-			count2++;   //make counter2 poits to next place to place a new operator or $
+            count2++;   //make counter2 poits to next place to place a new operator or $
             digit = 1;  //digit=1 means place $ in opers to indicate it is place for number            
         }
         else  if ((str[count1] == '&') && ((str[count1 + 1] == '&')))   //in case && operator
@@ -314,12 +314,12 @@ void extractFnums(int8_t* str, double* Fnums, int8_t* opers) {
 /*   check if the number if float or integer */
 int8_t isFloat(double num) {
     uint8_t result = 0;   // initially we suppose it is integer
-	double fpart;    //take the float part of the numbr
-	if(num<0)      //if the number is negative
-	{
-		num=num*-1;      //make the number positive
-	}
-     fpart= num - ((int32_t)num); //take the float part of number 
+    double fpart;    //take the float part of the numbr
+    if (num < 0)      //if the number is negative
+    {
+        num = num * -1;      //make the number positive
+    }
+    fpart = num - ((int32_t)num); //take the float part of number 
     if (fpart > 0.0)//if the float part is greater than 0
     {
         result = 1;  //it is float number 
@@ -664,9 +664,147 @@ double strCalc(double* nums, int8_t* opers)
     return nums[0];
 }
 
+/*
+  this function is used to do operations in the previous result
+  it simply remove ans string from expression and replaces it with the previous value
+*/
+ERROR_TYPE handleAns(int8_t* str, double* nums, uint8_t prev)
+{
+    uint8_t index;    //index of ans  in expression
+    if (ER == NO_ERROR)
+    {
+        if ((strIsContain(str, "ans")) || (strIsContain(str, "ANS") == 1))
+        {
+            if (prev == 1)
+            {
+                while (strIsContain(str, "ans") == 1)   //if the expression contains ans
+                {
+                    index = getStrIndex(str, "ans");   //get the index of ans
+                    delStr(str, "ans");  //delete ans string
+                    insertStr(str, floatToStr(nums[0], 4), index);   //replace ans with previous value
+                }
+                while (strIsContain(str, "ANS") == 1) //in case it is capital ANS 
+                {
+                    index = getStrIndex(str, "ANS");     //remove capital ANS
+                    delStr(str, "ANS"); //delete ANS string 
+                    insertStr(str, floatToStr(nums[0], 4), index);//replace ans with previous value
+                }
+            }
+            else
+            {
+                ER = NO_PREV;   //no previous result to be replaced
+            }
+        }
+    }
+    return ER;//return error type
+}
+
+/*handle all () in string */
+ERROR_TYPE handleParenthesis(int8_t* str)
+{
+    double fnums[20];//array to store numbers
+    int8_t opers[20]; //array to store operators
+    int8_t cpy[20];//holds all chars after ')' char
+    int8_t firstBraceIndx;//index of the roud brace
+    int8_t SecondBraceIndx;//index of the roud brace
+    int8_t* ptr;//pointer to float string
+    uint8_t count1 = 0;//is used as counter
+    uint8_t count2 = 0;//is used as counter,//is counter for next char in cpy string to be stored in original string  
+    if (ER == NO_ERROR)
+    {
+        while (strIsContainCh(str, ')') == 1) //loop until all ')' is removed from string 
+        {
+            SecondBraceIndx = charSearch(str, ')');//get the index of ')'
+            firstBraceIndx = searchBefore(str, '(', SecondBraceIndx - 1);//get the index of '('
+            if (firstBraceIndx >= 0)//if the index of '(' is in string
+            {
+                strCopy(cpy, str + SecondBraceIndx + 1);//copy the string after ')' operator into cpy array
+                str[SecondBraceIndx] = '\0';//replace ')' with null		
+                extractOpers(str + firstBraceIndx + 1, opers);//extract all operators from the new string
+                extractFnums(str + firstBraceIndx + 1, fnums, opers);//extract all numbers
+                ptr = floatToStr(strCalc(fnums, opers), 3);//ptr is point to float string , the float result is evaluated from strCalc function
+                count1 = firstBraceIndx;//count is used as a counter and initially has the index of '('
+                while (str[count1] != '\0')//delate all chars between '(' and ')' include also '(' and ')'
+                {
+                    delChar(str, firstBraceIndx);//delete character
+                }
+
+                count1 = 0;//reset counter to store the float result of the previous string
+                while (ptr[count1] != '\0')
+                {
+                    insertChar(str, ptr[count1], firstBraceIndx + count1);//insert float string in the original string
+                    count1++;//increment counter
+                }
+                while (cpy[count2] != '\0')//insert all chars which are after ')' in the original string
+                {
+                    insertChar(str, cpy[count2], firstBraceIndx + count1);//insert the string after ')'
+                    count1++;//increment count1
+                    count2++;//increment count2
+                }
+                count2 = 0;//reinitialize count2 to 0 which is counter for next char in cpy string to be stored in original string  
+            }
+            else
+            {
+                ER = BRACES_ERROR;//error in braces
+            }
+        }
+        if (strIsContainCh(str, '(') == 1)   //if '(' is in string without ')'
+        {
+            ER = BRACES_ERROR;//error in braces
+        }
+    }
+    return ER;
+}
+/*
+  if the user want the result to be in hexa or binary, this function only activates flag hex and bin
+  and removes hex and bin strings from expresion
+*/
+ERROR_TYPE typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
+{
+    if (ER == NO_ERROR)
+    {
+        if ((strIsContain(str, "hex") == 1) && (strLen(str) == 3) && prev == 1)  /* make the previous resut hex*/
+        {
+            delStr(str, "hex"); //delete "hex" to be replaced by the previous result but in hex and bin 
+            hex = 1;//activate hex flag
+        }
+        else if (strIsContain(str, "hex("))  //make the result of this string expression to be in sex
+        {
+            if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
+            {
+				    delStr(str, "hex"); //delete "hex" 
+					prev = 1;
+                    hex = 1;
+			}
+            else
+            {
+				 ER=INVALID_CONVERSION;
+            }
+        }
+		else if ((strIsContain(str, "bin") == 1) && (strLen(str) == 3) && prev == 1)  /* make the previous resut hex*/
+        {
+            delStr(str, "bin"); //delete "hex" to be replaced by the previous result but in hex and bin 
+            bin = 1;//activate hex flag
+        }
+		else if (strIsContain(str, "bin("))  //make the result of this string expression to be in sex
+        {
+            if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
+            {
+				    delStr(str, "bin"); //delete "hex" 
+					prev = 1;
+                    bin = 1;
+            }
+            else
+            {
+				 ER=INVALID_CONVERSION;
+            }
+        }
+
+    }
+	return ER;
+}
 ERROR_TYPE strRules(int8_t* str)
 {
-    ER = NO_ERROR;
     if ((strIsContainCh(str, ')') == 1) && (isOperator(str[charSearch(str, ')') - 1])))
     {
         ER = OPER_ERROR;
@@ -679,7 +817,7 @@ ERROR_TYPE strRules(int8_t* str)
         }
         else
         {
-            print("ERROR..\n");
+            //  print("ERROR..\n");
         }
     }
     if (strIsContain(str, "()"))
@@ -688,110 +826,6 @@ ERROR_TYPE strRules(int8_t* str)
         error = 1;
     }
     return ER;
-}
-
-
-void handleAns(int8_t* str, double* nums, uint8_t prev)
-{
-    uint8_t index;
-    if (prev == 1)
-    {
-        while (strIsContain(str, "ans") == 1)
-        {
-            index = getStrIndex(str, "ans");
-            delStr(str, "ans");
-            insertStr(str, floatToStr(nums[0], 4), index);
-        }
-        while (strIsContain(str, "ANS") == 1)
-        {
-            index = getStrIndex(str, "ANS");
-            delStr(str, "ANS");
-            insertStr(str, floatToStr(nums[0], 4), index);
-        }
-    }
-    else
-    {
-
-    }
-}
-void typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
-{
-    if ((strIsContain(str, "hex") == 1) && (strLen(str) == 3) && prev == 1)
-    {
-        delStr(str, "hex"); //delete "ans" to be replaced by the previous result but in hex
-        hex = 1;
-    }
-    if (strIsContain(str, "hex("))
-    {
-        if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
-        {
-            handleParenthesis(str);
-            delStr(str, "hex"); //delete "hex" to be replaced by the previous result but in hex
-            *preValue = strToFloat(str);
-            prev = 1;
-            hex = 1;
-        }
-        else
-        {
-            error = 1;
-        }
-    }
-}
-/*handle all () in string */
-uint8_t handleParenthesis(int8_t* str)
-{
-    double fnums[20];//array to store numbers
-    int8_t opers[20]; //array to store operators
-    int8_t cpy[20];//holds all chars after ')' char
-    int8_t firstBraceIndx;//index of the roud brace
-    int8_t SecondBraceIndx;//index of the roud brace
-    int8_t* ptr;//pointer to float string
-    uint8_t count1 = 0;//is used as counter
-	uint8_t count2 = 0;//is used as counter,//is counter for next char in cpy string to be stored in original string  
-	uint8_t valid=1 ;//bydefault it is valid string
-    while (strIsContainCh(str, ')') == 1) //loop until all ')' is removed from string 
-	{
-        SecondBraceIndx = charSearch(str, ')');//get the index of ')'
-		firstBraceIndx=searchBefore(str,'(',SecondBraceIndx-1);//get the index of '('
-		if(firstBraceIndx>=0)//if the index of '(' is in string
-		{
-			strCopy(cpy, str + SecondBraceIndx + 1);//copy the string after ')' operator into cpy array
-            str[SecondBraceIndx] = '\0';//replace ')' with null		
-            extractOpers(str + firstBraceIndx + 1, opers);//extract all operators from the new string
-            extractFnums(str + firstBraceIndx + 1, fnums, opers);//extract all numbers
-            ptr = floatToStr(strCalc(fnums, opers), 3);//ptr is point to float string , the float result is evaluated from strCalc function
-            count1 = firstBraceIndx;//count is used as a counter and initially has the index of '('
-            while (str[count1] != '\0')//delate all chars between '(' and ')' include also '(' and ')'
-            {
-                delChar(str, firstBraceIndx);//delete character
-            }
-
-            count1 = 0;//reset counter to store the float result of the previous string
-            while (ptr[count1] != '\0')
-            {
-                insertChar(str, ptr[count1], firstBraceIndx + count1);//insert float string in the original string
-                count1++;//increment counter
-            }
-            while (cpy[count2] != '\0')//insert all chars which are after ')' in the original string
-            {
-                insertChar(str, cpy[count2], firstBraceIndx + count1);//insert the string after ')'
-                count1++;//increment count1
-                count2++;//increment count2
-            }
-			count2=0;//reinitialize count2 to 0 which is counter for next char in cpy string to be stored in original string  
-        }		
-		else
-		{
-		  error =1;//if there is no '(' it is invalid string
-		  valid=0;//this string is invalid
-		}
-	}
-	if(strIsContainCh(str, '(') == 1)
-	{
-		error=1;//if there is '(' it is invalid string
-		valid=0;//this string is invalid
-	}
-	return valid  ;
 }
 double calculator(int8_t* str)
 {
@@ -802,19 +836,25 @@ double calculator(int8_t* str)
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result
     remStrSpace(str);//remove all spaces in stirng 
     strOptimize(str);
-    typeConverstionandle(str, nums, prev);
+    typeConverstionandle(str, nums, prev); 
     handleParenthesis(str);
     handleAns(str, nums, prev);
-
-    //  if (strRules(str) == 1)
-     // {
-    extractOpers(str, opers);
-    extractFnums(str, nums, opers);
-    result = strCalc(nums, opers);
-    prev = 1;
-    //}
-    //else {
-      //  error = 1;
-    //}
+    strRules(str);  
+    if (ER == NO_ERROR)
+    {
+        extractOpers(str, opers);
+        extractFnums(str, nums, opers);
+        result = strCalc(nums, opers);
+        prev = 1;
+    }
+    else if (ER == BRACES_ERROR)
+    {
+        printTerm("braces error");
+    }
+    else if (ER == NO_PREV)
+    {
+        printTerm("no previous result");
+    }
+    ER = NO_ERROR;
     return result;
 }

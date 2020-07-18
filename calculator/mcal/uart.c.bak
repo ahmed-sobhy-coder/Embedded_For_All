@@ -1402,7 +1402,7 @@ void UART_AT_Resp_Receive(uint8_t uartn, int8_t* string, uint32_t max)
         break;
     }
 }
-void Uart_SendInt(uint8_t uartn, uint32_t num)
+void Uart_SendInt(uint8_t uartn, int32_t num)
 {
     Uart_SendStr(uartn, intToStr(num));
 
