@@ -4,9 +4,9 @@ static int8_t class1[4] = { '*', '/', '%', '\0' };  //  arithmetic operatos
 static int8_t class2[3] = { '+', '-', '\0' };//arithmetic operators
 static int8_t class3[3] = { '<', '>', '\0' }; //logical operatos
 static int8_t class4[4] = { '&','^','|','\0' };//bitwise operators
-static int8_t class5[2] = { '=','\0' };//bitwise operators
 
 uint8_t numOpers = 0;
+uint8_t error;
 uint8_t hex;
 uint8_t bin;
 uint8_t dec;
@@ -125,12 +125,6 @@ void strOptimize(int8_t* str)
             count = 0; //reset counter
             continue;    //skip current loop
         }
-		else if(isOperator(str[count])&&str[count+1]=='+')
-		{
-            delChar(str, count + 1);   /*delete '+' opertor*/
-            count = 0; //reset counter
-            continue;    //skip current loop		
-		}
         count++; //increment counter
     }
 }
@@ -752,7 +746,6 @@ ERROR_TYPE handleParenthesis(int8_t* str)
             else
             {
                 ER = BRACES_ERROR;//error in braces
-                break;
             }
         }
         if (strIsContainCh(str, '(') == 1)   //if '(' is in string without ')'
@@ -779,119 +772,59 @@ ERROR_TYPE typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
         {
             if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
             {
-                delStr(str, "hex"); //delete "hex" 
-                prev = 1;
-                hex = 1;
-            }
+				    delStr(str, "hex"); //delete "hex" 
+					prev = 1;
+                    hex = 1;
+			}
             else
             {
-                ER = INVALID_CONVERSION;
+				 ER=INVALID_CONVERSION;
             }
         }
-        else if ((strIsContain(str, "bin") == 1) && (strLen(str) == 3) && prev == 1)  /* make the previous resut hex*/
+		else if ((strIsContain(str, "bin") == 1) && (strLen(str) == 3) && prev == 1)  /* make the previous resut hex*/
         {
             delStr(str, "bin"); //delete "hex" to be replaced by the previous result but in hex and bin 
             bin = 1;//activate hex flag
         }
-        else if (strIsContain(str, "bin("))  //make the result of this string expression to be in sex
+		else if (strIsContain(str, "bin("))  //make the result of this string expression to be in sex
         {
             if (strIsContain(str, ")") && (str[charSearch(str, ')') + 1] == '\0'))
             {
-                delStr(str, "bin"); //delete "hex" 
-                prev = 1;
-                bin = 1;
+				    delStr(str, "bin"); //delete "hex" 
+					prev = 1;
+                    bin = 1;
             }
             else
             {
-                ER = INVALID_CONVERSION;
+				 ER=INVALID_CONVERSION;
             }
         }
 
     }
-    return ER;
+	return ER;
 }
 ERROR_TYPE strRules(int8_t* str)
 {
-    uint8_t count=0; //is used as counter
-    /* in case string contains +) or -) or *) any operator before ')'*/
     if ((strIsContainCh(str, ')') == 1) && (isOperator(str[charSearch(str, ')') - 1])))
     {
-        ER = OPER_ERROR; //it is operator error
+        ER = OPER_ERROR;
     }
-    /* in case string index 0 has & or > or < or any kind of operator*/
-    if (strIsContainCh(class1, str[0]) ||   //is the first char in string is * or / or %
-        strIsContainCh(class3, str[0]) ||   //is the first char in string os > or < 
-        strIsContainCh(class4, str[0]) ||    //is the first char in string is & or | 
-        strIsContainCh(class5, str[0])     //is the first char in string is & or | 
-
-        )
+    if (isOperator(str[strLen(str) - 1]) == 1 || (isOperator(str[0]) == 1))
     {
-        ER = OPER_ERROR; //braces error
+        if ((str[0] == '-') && ((str[1] >= '0') || (str[1] <= '9')))
+        {
+            //result is 1
+        }
+        else
+        {
+            //  print("ERROR..\n");
+        }
     }
-    if (strIsContain(str, "()"))   //if string contains empty ()
+    if (strIsContain(str, "()"))
     {
-        ER = BRACES_ERROR; //braces error
+        ER = BRACES_ERROR;
+        error = 1;
     }
-	/* in valid chars in string expression*/
-	if(strIsContainCh(str,'#')||
-	   strIsContainCh(str,'@')||
-	   strIsContainCh(str,'_')||
-	   strIsContainCh(str,'?')||
-	   strIsContainCh(str,'\'')||
-	   strIsContainCh(str,'~')||
-	   strIsContainCh(str,'\"')||
-	   strIsContainCh(str,'\\')||
-	   strIsContainCh(str,':')||
-	   strIsContainCh(str,'$')||
-	   strIsContainCh(str,';')||
-	   strIsContainCh(str,'[')||
-	   strIsContainCh(str,']')
-	)  
-	{
-	  ER=CHAR_ERROR;
-	}
-	while(str[count]!='\0')
-	{
-	 if(((strIsContainCh(class0,str[count]))&& (strIsContainCh(class1,str[count+1])))||
-	    ((strIsContainCh(class0,str[count]))&& (strIsContainCh(class3,str[count+1])))||
-		((strIsContainCh(class0,str[count]))&& (strIsContainCh(class4,str[count+1])))||
-		((strIsContainCh(class0,str[count]))&& (strIsContainCh(class5,str[count+1])))||
-	    ((strIsContainCh(class5,str[count]))&& (strIsContainCh(class0,str[count+1])))||
-
-		((strIsContainCh(class1,str[count]))&& (strIsContainCh(class1,str[count+1])))||	
-		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class1,str[count+1])))||	
-		((strIsContainCh(class1,str[count]))&& (strIsContainCh(class3,str[count+1])))||	
-		((strIsContainCh(class3,str[count]))&& (strIsContainCh(class1,str[count+1])))||	
-		((strIsContainCh(class1,str[count]))&& (strIsContainCh(class4,str[count+1])))||	
-		((strIsContainCh(class4,str[count]))&& (strIsContainCh(class1,str[count+1])))||	
-		((strIsContainCh(class4,str[count]))&& (strIsContainCh(class5,str[count+1])))||	
-		((strIsContainCh(class5,str[count]))&& (strIsContainCh(class4,str[count+1])))||	
-		
-		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class3,str[count+1])))||	
-		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class4,str[count+1])))||	
- 		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class3,str[count+1])))||	
-		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class5,str[count+1])))||	
- 		((strIsContainCh(class5,str[count]))&& (strIsContainCh(class2,str[count+1])))||	
-		((strIsContainCh(class2,str[count]))&& (strIsContainCh(class4,str[count+1])))||	       
-		
-		((strIsContainCh(class3,str[count]))&& (strIsContainCh(class4,str[count+1])))||	
-		((strIsContainCh(class4,str[count]))&& (strIsContainCh(class3,str[count+1])))||	
-		((strIsContainCh(class5,str[count]))&& (strIsContainCh(class3,str[count+1])))||
-		(strIsContainCh(class5,str[count]))
-		)
-		
-		{	
-		  if(str[count]=='*'||str[count+1]=='*') ;
-		  else if(str[count]=='>'&&str[count+1]=='>') ;
-		  else if(str[count]=='<'&&str[count+1]=='<') ;
- 		  else if(str[count]=='!'&&str[count+1]=='=') ;
-          else {
-		  ER =OPER_ERROR;
-		  break;
-		  }		
-	    }      
-		count++;
-		}
     return ER;
 }
 double calculator(int8_t* str)
@@ -902,11 +835,11 @@ double calculator(int8_t* str)
     double result;
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result
     remStrSpace(str);//remove all spaces in stirng 
-    strRules(str);
     strOptimize(str);
-    typeConverstionandle(str, nums, prev);
+    typeConverstionandle(str, nums, prev); 
     handleParenthesis(str);
     handleAns(str, nums, prev);
+    strRules(str);  
     if (ER == NO_ERROR)
     {
         extractOpers(str, opers);
@@ -922,13 +855,6 @@ double calculator(int8_t* str)
     {
         printTerm("no previous result");
     }
-    else if (ER == OPER_ERROR)
-    {
-        printTerm("oper error");
-    }
-	else if (ER == CHAR_ERROR)
-    {
-        printTerm("invalid char");
-    }
+    ER = NO_ERROR;
     return result;
 }

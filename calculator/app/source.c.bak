@@ -59,7 +59,7 @@ int main(void)
 				}
 				else if(bin==1)
 				{
-				  printTerm(convDoubleToHexStr(result,4));				
+				  printTerm(convDoubleToBinStr(result,4));				
 				}
 				else
 				{
@@ -75,7 +75,8 @@ int main(void)
 				}
 				else if(bin==1)
 				{
-				  printTerm(convDoubleToHexStr((int32_t)result,0));				
+				  printTerm(convDoubleToBinStr((int32_t)result,0));	
+                  bin=0;				  
 				}
 				else
 				{

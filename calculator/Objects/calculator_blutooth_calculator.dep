@@ -1,30 +1,8 @@
 Dependencies for Project 'calculator_blutooth', Target 'calculator': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (.\lib\calc.h)(0x5F125FE6)()
-F (.\lib\calc.c)(0x5F12634F)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections --enum_is_int -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\calc.o --omf_browse .\objects\calc.crf --depend .\objects\calc.d)
-I (lib\calc.h)(0x5F125FE6)
-I (lib\stdint.h)(0x5F0EB32B)
-I (lib\math.h)(0x5F0E95AF)
-I (.\mcal\tm4c123io.h)(0x5F0E97AD)
-I (.\lib\bit.h)(0x5F0E94FA)
-I (.\mcal\TM4C123GH6PM.H)(0x5F0E5845)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D25E516)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5F0EB067)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D25E516)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25E516)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25E516)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8FA234)
-I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6E406)
-I (lib\strFuncs.h)(0x5F123EE8)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
-I (lib\array.h)(0x5F0EAA36)
-I (.\mcal\uart.h)(0x5F0FD7FC)
-I (.\mcal\nvic.h)(0x5F0E94FA)
-I (.\hal\rgb.h)(0x5F0E5BA3)
-I (.\mcal\systick.h)(0x5F0E94FA)
 F (.\app\app.h)(0x5F0FD70C)()
 F (.\app\lcdapps.h)(0x5F0E94FA)()
-F (.\app\source.c)(0x5F1262EE)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections --enum_is_int -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\source.o --omf_browse .\objects\source.crf --depend .\objects\source.d)
+F (.\app\source.c)(0x5F1272A1)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections --enum_is_int -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\source.o --omf_browse .\objects\source.crf --depend .\objects\source.d)
 I (app\app.h)(0x5F0FD70C)
 I (.\mcal\tm4c123io.h)(0x5F0E97AD)
 I (.\lib\stdint.h)(0x5F0EB32B)
@@ -47,7 +25,7 @@ I (.\lib\math.h)(0x5F0E95AF)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
 I (.\hal\lcdconfig.h)(0x5F0E5845)
 I (app\lcdapps.h)(0x5F0E94FA)
-I (.\lib\calc.h)(0x5F125FE6)
+I (app\calc.h)(0x5F127825)
 I (.\lib\array.h)(0x5F0EAA36)
 I (.\mcal\uart.h)(0x5F0FD7FC)
 I (.\mcal\nvic.h)(0x5F0E94FA)
@@ -70,6 +48,28 @@ I (.\lib\strfuncs.h)(0x5F123EE8)
 I (.\lib\math.h)(0x5F0E95AF)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
 I (.\hal\lcd.h)(0x5F0F3194)
+F (.\app\calc.c)(0x5F1289DD)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections --enum_is_int -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\calc.o --omf_browse .\objects\calc.crf --depend .\objects\calc.d)
+I (app\calc.h)(0x5F127825)
+I (.\lib\stdint.h)(0x5F0EB32B)
+I (.\lib\math.h)(0x5F0E95AF)
+I (.\mcal\tm4c123io.h)(0x5F0E97AD)
+I (.\lib\bit.h)(0x5F0E94FA)
+I (.\mcal\TM4C123GH6PM.H)(0x5F0E5845)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D25E516)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5F0EB067)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D25E516)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25E516)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25E516)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C8FA234)
+I (C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B6E406)
+I (.\lib\strFuncs.h)(0x5F123EE8)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B2678)
+I (.\lib\array.h)(0x5F0EAA36)
+I (.\mcal\uart.h)(0x5F0FD7FC)
+I (.\mcal\nvic.h)(0x5F0E94FA)
+I (.\hal\rgb.h)(0x5F0E5BA3)
+I (.\mcal\systick.h)(0x5F0E94FA)
+F (.\app\calc.h)(0x5F127825)()
 F (.\lib\array.c)(0x5F0FCCB9)(--c99 --gnu -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections --enum_is_int -I .\app -I .\hal -I .\mcal -I .\lib-I.\RTE\_calculator-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\objects\array.o --omf_browse .\objects\array.crf --depend .\objects\array.d)
 I (lib\array.h)(0x5F0EAA36)
 I (lib\stdint.h)(0x5F0EB32B)

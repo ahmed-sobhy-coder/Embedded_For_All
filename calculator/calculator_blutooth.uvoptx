@@ -153,7 +153,7 @@
           <Type>0</Type>
           <LineNumber>538</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>27068</Address>
+          <Address>27728</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -167,66 +167,66 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>747</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>27782</Address>
+          <LineNumber>808</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>33664</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\lib\calc.c</Filename>
+          <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\lib/calc.c\747</Expression>
+          <Expression>\\calculator_blutooth\app/calc.c\808</Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>774</LineNumber>
+          <LineNumber>845</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>27900</Address>
+          <Address>33904</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\lib\calc.c</Filename>
+          <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\lib/calc.c\774</Expression>
+          <Expression>\\calculator_blutooth\app/calc.c\845</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>659</LineNumber>
+          <LineNumber>814</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>32292</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\lib\calc.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\lib/calc.c\659</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>814</LineNumber>
+          <LineNumber>853</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>25718</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\lib\calc.c</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\lib/calc.c\814</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>5</Number>
@@ -512,30 +512,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\lib\calc.h</PathWithFileName>
-      <FilenameWithoutPath>calc.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\lib\calc.c</PathWithFileName>
-      <FilenameWithoutPath>calc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>3</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>.\app\app.h</PathWithFileName>
       <FilenameWithoutPath>app.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -543,7 +519,7 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>4</FileNumber>
+      <FileNumber>2</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -555,7 +531,7 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>5</FileNumber>
+      <FileNumber>3</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -567,13 +543,37 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>6</FileNumber>
+      <FileNumber>4</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\app\lcdapps.c</PathWithFileName>
       <FilenameWithoutPath>lcdapps.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\app\calc.c</PathWithFileName>
+      <FilenameWithoutPath>calc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>6</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\app\calc.h</PathWithFileName>
+      <FilenameWithoutPath>calc.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -1,7 +1,7 @@
 --cpu=Cortex-M4.fp.sp
-".\objects\calc.o"
 ".\objects\source.o"
 ".\objects\lcdapps.o"
+".\objects\calc.o"
 ".\objects\array.o"
 ".\objects\bluetooth.o"
 ".\objects\math.o"
