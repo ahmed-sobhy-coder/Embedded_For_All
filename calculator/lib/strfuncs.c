@@ -624,6 +624,14 @@ int8_t strCountNoStr(int8_t* str1, int8_t* str2)
 
     return nomatches;    //return how many times str2 is in str1
 }
-
+//search all chars before a given index
+int8_t searchBefore(int8_t* str,int8_t ch,int8_t index)
+{
+    while((str[index]!=ch)&&(index>=0))//loop all chars before given index
+	{
+      index--;//decrement index;
+	}
+	return index;//return the index of the required char
+}
 
 

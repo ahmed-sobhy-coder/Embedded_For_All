@@ -36,7 +36,7 @@ int main(void)
     Uart_Init(UT0, &huart0); //initalize uart 0
     Uart_Init(UT2, &huart2); //initialize uart2
 
-    Uart_SendStrRcNl(UT0, "calcualtor ready..."); //print that TIVA is ready
+    Uart_SendStrRcNl(UT0, "\n calcualtor ready..."); //print that TIVA is ready
     LCD_SendStrMid(LINE1,"Embedded Systems");
 	LCD_SendStrMid(LINE2,"CALCULATOR");
     RGB_Out(LED_RED, HIGH);
@@ -46,7 +46,7 @@ int main(void)
     while (1)
     {
 		UART_GetStrRcNl(UT0,str,20);
-		result=calculator(str);
+	 	result=calculator(str);
 		if(error==1)
 		{
 		  print("ERROR");
@@ -62,6 +62,6 @@ int main(void)
              Uart_SendInt(UT0,result);		
 			}
 		}
-      
+		   
     }
 }

@@ -65,6 +65,8 @@ void remStrSpace(int8_t*str) ;
 /*cout number of str2 in str1*/
 int8_t strCountNoStr(int8_t* str1, int8_t* str2) ;
 
+//search all chars before a given index
+int8_t searchBefore(int8_t* str,int8_t ch,int8_t index);
 
 #endif
 

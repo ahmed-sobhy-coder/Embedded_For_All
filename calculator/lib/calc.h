@@ -9,8 +9,6 @@
 typedef enum
 {
     POWER = '0',        //** 
-    GREATER_THEN,       //>
-    LESS_THEN,          //<
     GREATER_THEN_EQUAL, //>=
     LESS_THEN_EQUAL,    //<=
     EQUALITY,           //==
@@ -27,7 +25,8 @@ typedef enum
     NO_ERROR,     //there is no error
 } ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
-void handleParenthesis(int8_t* str)  ;
+/*handle all () in string */
+uint8_t handleParenthesis(int8_t* str)  ;
 
 /*   string calculator function */
 double strCalc(double* nums, int8_t* opers);
@@ -40,4 +39,5 @@ void extractFnums(int8_t* str, double* Fnums, int8_t* opers) ;
 /* extract operators from string*/
 void extractOpers(int8_t* str, int8_t* opers);
 double calculator(int8_t* str);
+
 #endif
