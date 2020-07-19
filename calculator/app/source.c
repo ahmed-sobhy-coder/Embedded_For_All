@@ -52,8 +52,13 @@ int main(void)
     int8_t str[20];
 	int8_t chstr[2];
     while (1)
-    {
+    {   
+	    RGB_DisAll();		
+        RGB_Out(LED_RED, HIGH);
         getBluetooth(str,20);
+		LCD_Clr();
+        RGB_Out(LED_GREEN, HIGH);
+		LCD_SendStrXY(COLUMN1,LINE1,str);
 		printTerm(str);
         result = calculator(str);
         if (ER == NO_ERROR)
@@ -63,7 +68,6 @@ int main(void)
 			      convChToStr(chstr,(int8_t)result);
 			     printBluetooth(chstr);
 			     printTerm(chstr);
-
 				 ascii=0    ;
 			}
             else if (isFloat(result) == 1)
@@ -72,17 +76,21 @@ int main(void)
 				{
 				   printTerm(convDoubleToHexStr(result,4));
 				   printBluetooth(convDoubleToHexStr(result,4));
+				   LCD_SendStrXY(COLUMN1,LINE2,convDoubleToHexStr(result,4));
 				   hex=0;
 				}
 				else if(bin==1)
 				{
 				  printTerm(convDoubleToBinStr(result,4));
-				  printBluetooth(convDoubleToBinStr(result,4));				
+				  printBluetooth(convDoubleToBinStr(result,4));	
+                  LCD_SendStrXY(COLUMN1,LINE2,convDoubleToBinStr(result,4));
+				  
 				}
 				else
 				{
 				   printTerm(floatToStr(result,4));
 				   printBluetooth(floatToStr(result,4));
+                   LCD_SendStrXY(COLUMN1,LINE2,floatToStr(result,4));
 				}
             }
             else
@@ -91,18 +99,23 @@ int main(void)
 				{
 				   printTerm(convDoubleToHexStr((int32_t)result,0));
 				   printBluetooth(convDoubleToHexStr((int32_t)result,0));
+                   LCD_SendStrXY(COLUMN1,LINE2,convDoubleToHexStr((int32_t)result,0));
+
 				   hex=0;
 				}
 				else if(bin==1)
 				{
 				  printTerm(convDoubleToBinStr((int32_t)result,0));
-				  printBluetooth(convDoubleToBinStr((int32_t)result,0));	
+				  printBluetooth(convDoubleToBinStr((int32_t)result,0));
+                  LCD_SendStrXY(COLUMN1,LINE2,convDoubleToBinStr((int32_t)result,0));
+				  
                   bin=0;				  
 				}
 				else
 				{
 				   printTerm(intToStr((int32_t)result));
 				   printBluetooth(intToStr((int32_t)result));
+                  LCD_SendStrXY(COLUMN1,LINE2,intToStr((int32_t)result));
 				}
             }
         }
@@ -110,5 +123,6 @@ int main(void)
 		{
 		      ER = NO_ERROR;
 		}
+		msDelay(500);
     }
 }

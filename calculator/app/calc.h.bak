@@ -18,7 +18,7 @@ typedef enum
     SHRIGHT,            //>>
     LOGICAND,           //&&
     LOGICOR,            //||
-} calc;
+} CALC;
 typedef enum
 {
     NO_ERROR,     //there is no error
@@ -26,7 +26,7 @@ typedef enum
     INVALID_OPER,   //there is error in operators
 	INVALID_NO_PREV,      //there is no previous result
 	INVALID_CONVERSION,
-	INVALID_EXPRESSION
+	INVALID_EXPRESSION,
 	INVALID_CHAR,
 } ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
