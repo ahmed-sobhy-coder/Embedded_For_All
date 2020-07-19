@@ -151,9 +151,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+          <LineNumber>965</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>34690</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\app\calc.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\calculator_blutooth\app/calc.c\965</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
           <LineNumber>538</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>27892</Address>
+          <Address>27984</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -165,27 +181,11 @@
           <Expression>\\calculator_blutooth\lib/strfuncs.c\538</Expression>
         </Bp>
         <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>799</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>35586</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\app\calc.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\app/calc.c\799</Expression>
-        </Bp>
-        <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>771</LineNumber>
+          <LineNumber>993</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>35460</Address>
+          <Address>35082</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -194,14 +194,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\app/calc.c\771</Expression>
+          <Expression>\\calculator_blutooth\app/calc.c\993</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>950</LineNumber>
+          <LineNumber>1016</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>25612</Address>
+          <Address>35496</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -210,7 +210,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\app\calc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\calculator_blutooth\app/calc.c\950</Expression>
+          <Expression>\\calculator_blutooth\app/calc.c\1016</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>932</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\app\calc.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>539</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\lib\strfuncs.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

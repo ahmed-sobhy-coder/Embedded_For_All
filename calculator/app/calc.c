@@ -699,7 +699,7 @@ ERROR_TYPE handleAns(int8_t* str, double* nums, uint8_t prev)
             }
             else
             {
-                ER = NO_PREV;   //no previous result to be replaced
+                ER = INVALID_NO_PREV;   //no previous result to be replaced
             }
         }
     }
@@ -752,13 +752,13 @@ ERROR_TYPE handleParenthesis(int8_t* str)
             }
             else
             {
-                ER = BRACES_ERROR;//error in braces
+                ER = INVALID_BRACES;//error in braces
                 break;
             }
         }
         if (strIsContainCh(str, '(') == 1)   //if '(' is in string without ')'
         {
-            ER = BRACES_ERROR;//error in braces
+            ER = INVALID_BRACES;//error in braces
         }
     }
     return ER;
@@ -852,13 +852,72 @@ ERROR_TYPE typeConverstionandle(int8_t* str, double* preValue, uint8_t prev)
     }
     return ER;
 }
+uint8_t isChar(int8_t ch)
+{   uint8_t result=0;
+   if(((ch>='a')&&(ch<='z'))||(((ch>='A')&&(ch<='Z'))))
+   {
+	  result=1;
+   }
+   return result;
+}
+/*string rules*/
+uint8_t StrIsOpers(int8_t* str)
+{
+    uint8_t count=0;
+	uint8_t result=0;
+	while(str[count]!='\0')
+	{
+	   if(isDigitChar(str[count])||isChar(str[count]))
+	   {
+			 break;
+	   }
+	   count++;
+	}
+	if(count==strLen(str))
+	{
+		result=1;
+	}
+return result;
+}
+uint8_t isValidOper(int8_t* str)
+{
+   uint8_t result=0;
+   uint8_t count=0;
+   while(str[count]!='\0')
+   {
+		if(isDigitChar(str[count]))
+		{
+			result=1;
+			break;
+			
+		}
+		count++;
+   }
+	  return result;
+}
 ERROR_TYPE strRules(int8_t* str)
 {
     uint8_t count = 0; //is used as counter
+	uint8_t oneTimeCountr=0;
+	for(oneTimeCountr=0;oneTimeCountr<1;oneTimeCountr++)
+	{
+	     remStrSpace(str);//remove all spaces in stirng   
+      if((strLen(str)==0))
+	{
+		ER=INVALID_EXPRESSION;
+		break;
+	}        
+	if(StrIsOpers(str)==1)
+	{
+		ER=INVALID_EXPRESSION;
+		break;
+	} 
+
     /* in case string contains +) or -) or *) any operator before ')'*/
     if ((strIsContainCh(str, ')') == 1) && (isOperator(str[charSearch(str, ')') - 1])))
     {
-        ER = OPER_ERROR; //it is operator error
+        ER = INVALID_OPER; //it is operator error
+		break  ;
     }
     /* in case string index 0 has & or > or < or any kind of operator*/
     if (strIsContainCh(class1, str[0]) ||   //is the first char in string is * or / or %
@@ -868,11 +927,14 @@ ERROR_TYPE strRules(int8_t* str)
 
         )
     {
-        ER = OPER_ERROR; //braces error
+        ER = INVALID_EXPRESSION; //braces error
+		break;
     }
+	
     if (strIsContain(str, "()"))   //if string contains empty ()
     {
-        ER = BRACES_ERROR; //braces error
+        ER = INVALID_BRACES; //braces error
+		break;
     }
     /* in valid chars in string expression*/
     if (strIsContainCh(str, '#') ||
@@ -889,55 +951,77 @@ ERROR_TYPE strRules(int8_t* str)
         strIsContainCh(str, ']')
         )
     {
-        ER = CHAR_ERROR;
+        ER = INVALID_CHAR;   //return invalid char error
+		break;
     }
-    while (str[count + 1] != '\0')
+ /* in case string has  >&*  or <> or >>> or any invalid operators */
+    while (str[count] != '\0')      
     {
-        if (((strIsContainCh(class0, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||
-            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
-            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class5, str[count + 1]))) ||
-            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class0, str[count + 1]))) ||
+        if (((strIsContainCh(class0, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||  // +*,!*, +/,...
+            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||  // !>, +<,... 
+            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||  // !&, -|,...
+            ((strIsContainCh(class0, str[count])) && (strIsContainCh(class5, str[count + 1]))) ||  // += or -= but != is valid
+            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class0, str[count + 1]))) ||   // =!, =+, =-,...
+            ((strIsContainCh(class0, str[count])) && (isValidOper(str+count+1)==0)) ||
+          
+		  ((strIsContainCh(class1, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||  // //, %%,..
+            ((strIsContainCh(class1, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||  // *>, /<,..
+            ((strIsContainCh(class3, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||  // >*, </,..
+            ((strIsContainCh(class1, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||  // *&, %|,..
+            ((strIsContainCh(class4, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||  //  &*, *&,..
+            ((strIsContainCh(class1, str[count])) && (isValidOper(str+count+1)==0)) ||
+			
+			((strIsContainCh(class3, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||  //  ><,<>,..
+			((strIsContainCh(class4, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||  //  |&,&^,..
+            ((strIsContainCh(class3, str[count])) && (isValidOper(str+count+1)==0)) ||
+            ((strIsContainCh(class4, str[count])) && (isValidOper(str+count+1)==0)) ||
 
-            ((strIsContainCh(class1, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||
-            ((strIsContainCh(class1, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            ((strIsContainCh(class3, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||
-            ((strIsContainCh(class1, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
-            ((strIsContainCh(class4, str[count])) && (strIsContainCh(class1, str[count + 1]))) ||
-            ((strIsContainCh(class4, str[count])) && (strIsContainCh(class5, str[count + 1]))) ||
-            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
+            
+			((strIsContainCh(class4, str[count])) && (strIsContainCh(class5, str[count + 1]))) ||  //  &=,|=,..
+            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||   //=& ,=|,..
+		    ((strIsContainCh(class4, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||     //&> or |<
+            ((strIsContainCh(class3, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||     //<& or >|
 
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class5, str[count + 1]))) ||
-            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class2, str[count + 1]))) ||
-            ((strIsContainCh(class2, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
 
-            ((strIsContainCh(class3, str[count])) && (strIsContainCh(class4, str[count + 1]))) ||
-            ((strIsContainCh(class4, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||
-            (str[count] == '.' && isOperator(str[count + 1])) ||
-            (str[count] == '=')
+            ((strIsContainCh(class5, str[count])) && (strIsContainCh(class3, str[count + 1]))) ||     //=>,<=
+            (str[count] == '.' && isOperator(str[count + 1])) ||   //in case of .> or .+,...
+            (str[count] == '=')       //only '=' exist    
+          //  (strIsContainCh(class0, str[count])&&(isUnary))			
             )
 
         {
-            if (str[count] == '*' || str[count + 1] == '*');
-            else if (str[count] == '>' && str[count + 1] == '>');
-            else if (str[count] == '<' && str[count + 1] == '<');
-            else if (str[count] == '!' && str[count + 1] == '=');
-            else if (str[count] == '>' && str[count - 1] == '=') count++;
-            else if (str[count] == '<' && str[count - 1] == '=') count++;
-            else if (str[count] == '=' && str[count + 1] == '=') count++;
+             if ((str[count] == '*') && (str[count + 1] == '*')&&  //** is valid 
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++; 
+            else if ((str[count] == '>') && (str[count + 1] == '>')&&    //>> is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '<') && (str[count + 1] == '<')&&     //<< is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '!') && (str[count + 1] == '=')&&      //!= is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '>') && (str[count + 1] == '=')&&      //>= is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '<') && (str[count + 1] == '=')&&      //<= is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '=') && (str[count + 1] == '=')&&       // == is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '&') && (str[count + 1] == '&')&&       // && is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
+			else if ((str[count] == '|') && (str[count + 1] == '|')&&       // || is valid
+			((isDigitChar(str[count+2]))||(strIsContainCh(class0,str[count+2]))))count++;
             else {
-                ER = OPER_ERROR;
+                ER = INVALID_EXPRESSION; //invalid operator
                 break;
             }
         }
-        count++;
-    }
-    return ER;
+        count++; //incrment counter to go to next char 
+    }	
+	
+	
+	
+	
+	}
+    return ER;     //return the type of error
+	 
 }
 double calculator(int8_t* str)
 {
@@ -946,10 +1030,10 @@ double calculator(int8_t* str)
 
     double result;
     static uint8_t prev = 0;//flag to indicate, that you can work in the previous result     
-    remStrSpace(str);//remove all spaces in stirng   
+ 
+    strRules(str);
     typeConverstionandle(str, nums, prev);
     handleAns(str, nums, prev);
-    strRules(str);
     strOptimize(str);
     handleParenthesis(str);
 
@@ -960,23 +1044,23 @@ double calculator(int8_t* str)
         result = strCalc(nums, opers);
         prev = 1;
     }
-    else if (ER == BRACES_ERROR)
+    else if (ER == INVALID_BRACES)
     {
         printTerm("braces error");
         printBluetooth("braces error");
 
     }
-    else if (ER == NO_PREV)
+    else if (ER == INVALID_NO_PREV)
     {
         printTerm("no previous result");
         printBluetooth("no previous result");
     }
-    else if (ER == OPER_ERROR)
+    else if (ER == INVALID_OPER)
     {
         printTerm("oper error");
         printBluetooth("oper error");
     }
-    else if (ER == CHAR_ERROR)
+    else if (ER == INVALID_CHAR)
     {
         printTerm("invalid char");
         printBluetooth("invalid char");
@@ -985,6 +1069,11 @@ double calculator(int8_t* str)
     {
         printTerm("invalid conversion");
         printBluetooth("invalid conversion");
+    }
+	    else if (ER == INVALID_EXPRESSION)
+    {
+        printTerm("invalid expression");
+        printBluetooth("invalid expression");
     }
     else if (((ascii == 1) && (isFloat(result) == 1)) ||
         ((ascii == 1) && (((int32_t)result) < 32)) ||

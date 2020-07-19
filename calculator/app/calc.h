@@ -22,11 +22,12 @@ typedef enum
 typedef enum
 {
     NO_ERROR,     //there is no error
-	BRACES_ERROR, //there is error in braces
-    OPER_ERROR,   //there is error in operators
-	NO_PREV,      //there is no previous result
+	INVALID_BRACES, //there is error in braces
+    INVALID_OPER,   //there is error in operators
+	INVALID_NO_PREV,      //there is no previous result
 	INVALID_CONVERSION,
-	CHAR_ERROR,
+	INVALID_EXPRESSION,
+	INVALID_CHAR,
 } ERROR_TYPE;
 int8_t isUnaryMinus(int8_t* str, int8_t index);
 /*handle all () in string */
